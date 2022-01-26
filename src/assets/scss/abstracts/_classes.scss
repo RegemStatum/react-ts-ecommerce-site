@@ -1,0 +1,87 @@
+@use "./mixins" as *;
+@use "./breakpoints" as *;
+@use "./functions" as *;
+
+// page
+.page-min-height {
+  // calc(2 * [header/footer] padding + [header/footer] height)
+  $headerHeight: calc(2 * getPadding(1000) + getFontSize(1200));
+  $footerHeight: calc(2 * getPadding(1000) + 2rem);
+  @include pageMinHeight($headerHeight, $footerHeight);
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.section-p {
+  padding: getPadding(1200) 0;
+
+  @include md {
+    padding: getPadding(1400) 0;
+  }
+}
+
+// position
+.row {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.al-c {
+  align-items: center;
+}
+
+.jus-c {
+  justify-content: center;
+}
+
+.abs {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.abs-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center {
+  margin: 0 auto;
+  text-align: center;
+}
+
+// styling
+.accent {
+  color: getColor("color-1");
+  @include textShadow("color-1");
+}
+
+.accent-3 {
+  color: getColor("color-3");
+  @include textShadow("color-3");
+}
+
+.b {
+  font-weight: 900;
+}
+
+.sb {
+  font-weight: 600;
+}
+
+// colors
+.dark-red-text {
+  color: getMainColor("clr-red-dark");
+}
+
+.dark-yellow-text {
+  color: getMainColor("clr-yellow-dark");
+}
+
+.dark-green-text {
+  color: getMainColor("clr-green-dark");
+}
