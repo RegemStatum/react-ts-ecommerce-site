@@ -1,4 +1,195 @@
 @use "../abstracts" as *;
 
-// .footer {
-// }
+.footer {
+  padding: getPadding(1000) 0;
+
+  #{&}-logo {
+    margin-bottom: getMargin(900);
+  }
+
+  #{&}-social-links {
+    display: flex;
+    align-items: center;
+    gap: getMargin(800);
+
+    a {
+      display: flex;
+      align-items: center;
+      font-size: 1.2rem;
+      transition: color 0.3s ease-in;
+
+      &:hover {
+        color: getColor("clr-1");
+      }
+    }
+  }
+
+  #{&}-links {
+    padding: getPadding(800) 0;
+    display: flex;
+    flex-direction: column;
+
+    a {
+      font-weight: 500;
+      letter-spacing: 0.05rem;
+      padding: getPadding(100) 0;
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  #{&}-subscribe {
+    padding-bottom: getPadding(700);
+
+    h5 {
+      padding-bottom: getPadding(300);
+      @include text(400);
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .validation-error,
+    .validation-success {
+      @include text(300);
+      color: getColor("text-3-clr");
+      padding: getPadding(200) 0;
+    }
+
+    .footer-subscribe-form {
+      display: flex;
+      flex-direction: column;
+      width: 80%;
+      max-width: 250px;
+
+      input {
+        padding: getPadding(500) getPadding(1000);
+        margin-bottom: getMargin(500);
+        width: 100%;
+
+        box-shadow: 0 0 3px getColor("clr-1");
+
+        &::placeholder {
+          @include text(300);
+          letter-spacing: 0.03rem;
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      button {
+        max-width: 10rem;
+        max-height: 2.75rem;
+        padding: getPadding(500) getPadding(1400);
+        font-weight: 600;
+        letter-spacing: 0.03rem;
+        @include text(300);
+        background-color: getColor("text-3-clr");
+        transition: color 0.3s ease-in-out;
+        cursor: pointer;
+      }
+    }
+  }
+
+  #{&}-contact {
+    h5 {
+      padding-bottom: getPadding(300);
+      @include text(400);
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    p {
+      @include text(300);
+      color: getColor("text-3-clr");
+    }
+
+    a {
+      display: block;
+      @include text(300);
+      font-weight: 500;
+      transition: color 0.2s ease-in-out;
+      padding-bottom: getPadding(300);
+
+      &:hover {
+        color: getColor("clr-1");
+      }
+    }
+
+    .payment-cards {
+      display: flex;
+      gap: getMargin();
+      padding: getPadding() 0;
+    }
+  }
+
+  @include md {
+    .container,
+    #{&}-links-subscribe {
+      display: flex;
+      justify-content: space-between;
+      gap: getMargin(1100);
+    }
+
+    #{&}-links {
+      padding: 0;
+    }
+
+    #{&}-subscribe {
+      .footer-subscribe-form {
+        max-width: 20rem;
+        width: 100%;
+      }
+    }
+  }
+
+  @include lg {
+    #{&}-logo {
+      margin-bottom: getMargin(1700);
+    }
+
+    #{&}-links-subscribe {
+      max-width: 30.125rem;
+      flex-direction: column;
+    }
+
+    #{&}-links {
+      flex-direction: row;
+      gap: getMargin(1300);
+      margin-bottom: getMargin(800);
+    }
+
+    #{&}-subscribe {
+      h5 {
+        padding-bottom: getPadding(1100);
+      }
+
+      .footer-subscribe-form {
+        max-width: fit-content;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: getMargin(900);
+      }
+    }
+
+    #{&}-contact {
+      h5 {
+        padding-bottom: getPadding(1300);
+      }
+
+      a {
+        padding-bottom: getPadding(900);
+      }
+    }
+  }
+
+  @include xl {
+    .footer-links-subscribe {
+      margin-left: auto;
+      margin-right: getMargin(1900);
+    }
+  }
+}

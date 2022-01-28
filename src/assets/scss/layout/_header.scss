@@ -11,8 +11,88 @@
     display: none;
   }
 
-  .header-links nav > * {
-    margin-right: getMargin(1500);
+  .header-links nav {
+    display: flex;
+    align-items: center;
+    min-height: 2.5rem;
+
+    & > * {
+      margin-right: getMargin(1500);
+    }
+  }
+
+  .link-falldown {
+    position: relative;
+    cursor: pointer;
+
+    &:hover {
+      .sublinks-container {
+        width: auto;
+        height: auto;
+        opacity: 1;
+        overflow: visible;
+      }
+    }
+
+    .name {
+      min-height: 2.5rem;
+      display: flex;
+      align-items: center;
+
+      .link-name {
+        cursor: default;
+        pointer-events: none;
+      }
+    }
+
+    .sublinks-container {
+      width: 0;
+      height: 0;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      left: 50%;
+      background-color: getColor("clr-2");
+      transform: translate(-50%, -3px);
+      @include radius;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        width: auto;
+        height: auto;
+        opacity: 1;
+        overflow: visible;
+      }
+
+      &:before {
+        content: "";
+        width: 0;
+        height: 0;
+        position: absolute;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid getColor("clr-2");
+        left: 50%;
+        transform: translate(-50%, -60%);
+        transition: none;
+      }
+
+      .sublinks {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: getMargin(1000);
+        padding: getPadding(900);
+
+        a {
+          @include text(400);
+          text-transform: none;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
   }
 
   .logo img {
@@ -24,59 +104,21 @@
     align-items: center;
     color: getColor("text-3-clr");
     font-size: 2.5rem;
+    background-color: transparent;
+    cursor: pointer;
   }
 
   @include lg {
-    .header-links,
-    .login-signup {
+    .header-links {
       display: block;
-    }
-
-    .mobile-menu {
-      display: none;
     }
 
     .login-signup {
       display: flex;
-      align-items: center;
+    }
 
-      a {
-        margin-right: getMargin(1500);
-      }
-
-      .shop-cart-container {
-        display: flex;
-
-        .shop-cart {
-          position: relative;
-        }
-
-        .shop-cart .circle {
-          width: 1.4rem;
-          height: 1.4rem;
-          position: absolute;
-          bottom: -4px;
-          right: -2px;
-          background-color: getColor("text-3-clr");
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          span {
-            @include text(400);
-            font-weight: 600;
-            color: getColor("clr-1");
-            margin: 0 auto;
-          }
-        }
-      }
-
-      .shop-cart-container * {
-        font-size: 2.5rem;
-        color: getColor("text-3-clr");
-        margin-right: getMargin(800);
-      }
+    .mobile-menu {
+      display: none;
     }
   }
 }

@@ -1,6 +1,6 @@
 @use "./abstracts" as *;
 @use "./base" as *;
-// @use "./components" as *;
+@use "./components" as *;
 @use "./layout" as *;
 @use "./pages" as *;
 // @use "./vendors/" as *;
@@ -62,7 +62,7 @@ body {
 
     // &:hover {
     //   text-decoration: underline;
-    //   text-underline-offset: 0.05rem;
+    //   text-underline-offset: 0.08rem;
     // }
   }
 

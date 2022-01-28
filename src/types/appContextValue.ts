@@ -1,3 +1,10 @@
+import React from "react";
+import {
+  appReducerActionType as ActionType,
+  appReducerStateType as StateType,
+} from "./appReducer";
+
 export default interface appContextValueType {
-  name?: string;
+  state: StateType;
+  dispatch: React.Dispatch<ActionType>;
 }

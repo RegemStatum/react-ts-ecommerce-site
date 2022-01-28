@@ -11,14 +11,6 @@
   border-radius: getBorderRadius($value);
 }
 
-@mixin transition($property: all, $time: 0.3s) {
-  transition: $property $time linear;
-}
-
-@mixin easeInOutTransition($property: all, $time: 0.3s) {
-  transition: $property $time ease-in-out;
-}
-
 @mixin textShadow($color: "text-color", $radius: 7px) {
   text-shadow: getColor($color) 0 0 $radius;
 }

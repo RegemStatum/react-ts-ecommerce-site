@@ -3,12 +3,10 @@ import { useAppContext } from "../context/AppContext";
 import appContextValueType from "../types/appContextValue";
 
 const HomePage: FC = () => {
-  const { name }: appContextValueType = useAppContext();
-
   return (
     <>
-      <div className="container" style={{ backgroundColor: "red" }}>
-        <h2>Home page: {name}</h2>
+      <div className="container">
+        <h3>Home page</h3>
       </div>
     </>
   );

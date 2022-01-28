@@ -1,5 +1,75 @@
 @use "../abstracts/" as *;
 
-// .sidebar {
+.sidebar-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: getPadding(1000);
+  background-color: getColor("clr-1");
 
-// }
+  .sidebar {
+    position: relative;
+    width: 90%;
+    min-width: 290px;
+    max-width: 700px;
+    margin: 0 auto;
+
+    .close-btn {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 2.2rem;
+      color: getColor("clr-red");
+      cursor: pointer;
+    }
+
+    .login-signup {
+      flex-direction: column;
+      align-items: flex-start;
+
+      .shop-cart-container {
+        a {
+          margin-right: getMargin();
+        }
+        .shop-cart {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+
+      & > :first-child {
+        padding-top: getPadding(300);
+      }
+    }
+
+    .nav-links > a,
+    .nav-links .link-falldown .link-name,
+    .login-signup > a {
+      width: auto;
+      @include text(600);
+      padding-bottom: getPadding(600);
+    }
+
+    .nav-links .link-falldown {
+      padding-bottom: getPadding(600);
+
+      .sublinks-container .sublinks {
+        display: flex;
+        flex-direction: column;
+        padding: getPadding() 0;
+
+        a {
+          color: getColor("text-1-clr");
+          @include text(500);
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}
