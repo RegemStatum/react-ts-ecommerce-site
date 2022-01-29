@@ -8,6 +8,7 @@
   height: 100%;
   padding: getPadding(1000);
   background-color: getColor("clr-1");
+  z-index: 9999;
 
   .sidebar {
     position: relative;

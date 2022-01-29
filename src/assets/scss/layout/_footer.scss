@@ -16,10 +16,11 @@
       display: flex;
       align-items: center;
       font-size: 1.2rem;
-      transition: color 0.3s ease-in;
+      transition: opacity 0.3s ease-in;
+      opacity: 0.5;
 
       &:hover {
-        color: getColor("clr-1");
+        opacity: 1;
       }
     }
   }
@@ -113,10 +114,6 @@
       font-weight: 500;
       transition: color 0.2s ease-in-out;
       padding-bottom: getPadding(300);
-
-      &:hover {
-        color: getColor("clr-1");
-      }
     }
 
     .payment-cards {
@@ -159,7 +156,11 @@
     #{&}-links {
       flex-direction: row;
       gap: getMargin(1300);
-      margin-bottom: getMargin(800);
+      margin-bottom: getMargin(1000);
+
+      a {
+        padding: 0;
+      }
     }
 
     #{&}-subscribe {
@@ -168,7 +169,7 @@
       }
 
       .footer-subscribe-form {
-        max-width: fit-content;
+        max-width: 30rem;
         flex-direction: row;
         justify-content: space-between;
         gap: getMargin(900);
@@ -181,7 +182,7 @@
       }
 
       a {
-        padding-bottom: getPadding(900);
+        padding-bottom: getPadding(1000);
       }
     }
   }

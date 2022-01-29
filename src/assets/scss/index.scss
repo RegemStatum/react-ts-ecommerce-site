@@ -7,10 +7,12 @@
 
 //GLOBAL_STYLES
 body {
-  font-family: "Playfair Display", sans-serif;
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
   background-color: getColor("bg-color");
   color: getColor("text-color");
   background-color: getColor("text-2-clr");
+  font-weight: 500;
 
   .container {
     width: 95%;

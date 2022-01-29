@@ -1,0 +1,5 @@
+@use "../abstracts/" as *;
+
+.hero {
+  background-color: getColor("bg-color");
+}
