@@ -7,8 +7,6 @@
 
 //GLOBAL_STYLES
 body {
-  font-family: "Montserrat", sans-serif;
-  font-style: normal;
   background-color: getColor("bg-color");
   color: getColor("text-color");
   background-color: getColor("text-2-clr");
@@ -47,7 +45,7 @@ body {
   h3,
   h4,
   h5 {
-    font-weight: 900;
+    font-family: "Montserrat", sans-serif;
   }
 
   // xs fontsizes
@@ -59,13 +57,9 @@ body {
     @include text(300);
     color: getColor("text-3-clr");
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
-
-    // &:hover {
-    //   text-decoration: underline;
-    //   text-underline-offset: 0.08rem;
-    // }
+    font-family: "Montserrat", sans-serif;
   }
 
   h1 {

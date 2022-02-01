@@ -1,5 +1,159 @@
 @use "../abstracts/" as *;
 
 .hero {
-  background-color: getColor("bg-color");
+  width: auto;
+  position: relative;
+  margin-top: -(getMargin(600) + 2.625rem);
+  background-color: getColor("bg-clr");
+  color: getColor("text-3-clr");
+  z-index: -1;
+  pointer-events: auto;
+
+  .container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-slider {
+    width: 100%;
+    position: relative;
+
+    .hero-slider-content-bg {
+      z-index: -1;
+    }
+
+    .hero-slider-inner-container {
+      z-index: -1;
+    }
+
+    .hero-slider-content,
+    .hero-slider-content-bg {
+      overflow: hidden;
+      position: absolute;
+      text-align: center;
+      width: 100%;
+      height: 100%;
+      top: 0;
+    }
+
+    .hero-slider-content.cur,
+    .hero-slider-content-bg.cur {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .hero-slider-content.prev,
+    .hero-slider-content-bg.prev {
+      opacity: 1;
+      transform: translateX(-100%);
+    }
+
+    .hero-slider-content.next,
+    .hero-slider-content-bg.next {
+      opacity: 1;
+      transform: translateX(100%);
+    }
+
+    .hero-btn {
+      cursor: pointer;
+    }
+  }
+
+  @include md {
+    margin-top: -(getMargin(1000) + 2.625rem);
+  }
+
+  @include lg {
+    margin-top: -(getMargin(1200) + 2.625rem);
+  }
+
+  #{&}-bg-text,
+  #{&}-front-text {
+    display: block;
+    width: 100%;
+    position: absolute;
+    font-family: "Playfair Display", serif;
+    font-weight: bold;
+  }
+
+  #{&}-bg-text {
+    font-size: 23vw;
+    top: 29%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: getColor(clr-2);
+    text-transform: uppercase;
+  }
+
+  #{&}-front-text {
+    font-size: 12vw;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  #{&}-img {
+    padding-top: getMargin(1800);
+    margin: 0 auto;
+    z-index: -999;
+  }
+
+  #{&}-btn {
+    display: block;
+    position: absolute;
+    width: max-content;
+    top: 66%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: getPadding() getPadding(1200);
+    border-radius: 1.5rem;
+    letter-spacing: 0.2rem;
+    background-color: getColor("bg-clr");
+    cursor: pointer;
+  }
+
+  #{&}-slider-arrow-left,
+  #{&}-slider-arrow-right {
+    display: block;
+    position: absolute;
+    min-height: 2rem;
+    max-height: 2.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 6vw;
+    opacity: 0.5;
+    cursor: pointer;
+    color: getColor("text-3-clr");
+    background-color: transparent;
+    z-index: 50;
+  }
+
+  #{&}-slider-arrow-left {
+    left: 0;
+  }
+
+  #{&}-slider-arrow-right {
+    right: 0;
+  }
+
+  @media (min-width: 600px) {
+    #{&}-bg-text {
+      top: 26%;
+      @include text(1500);
+    }
+
+    #{&}-front-text {
+      top: 48%;
+      @include text(1200);
+    }
+
+    #{&}-btn {
+      top: 62%;
+    }
+
+    #{&}-slider-arrow-left,
+    #{&}-slider-arrow-right {
+      font-size: 2rem;
+    }
+  }
 }

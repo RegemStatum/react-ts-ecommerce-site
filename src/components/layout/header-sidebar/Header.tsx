@@ -19,7 +19,7 @@ const Header: FC = () => {
   return (
     <header className="header">
       <div className="container">
-        <div className="logo">
+        <div className="header-logo">
           <Link to="">
             <img src={logo} alt="be-pro" />
           </Link>

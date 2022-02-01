@@ -4,7 +4,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: getPadding(1200);
+  padding-top: getPadding(600);
+  font-family: "Montserrat", sans-serif;
+
+  @include md {
+    padding-top: getPadding(1000);
+  }
+
+  @include lg {
+    padding-top: getPadding(1200);
+  }
 
   .header-links,
   .login-signup {
@@ -95,7 +104,7 @@
     }
   }
 
-  .logo img {
+  .header-logo img {
     width: 6rem;
   }
 
