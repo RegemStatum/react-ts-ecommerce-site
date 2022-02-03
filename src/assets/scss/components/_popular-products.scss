@@ -4,8 +4,12 @@
   font-family: "Montserrat", sans-serif;
   display: grid;
   grid-template-columns: 1fr;
-  padding-top: getPadding(1700);
+  padding-top: getPadding(1300);
   gap: getMargin();
+
+  @include md {
+    padding-top: getPadding(1700);
+  }
 
   &.container-2 {
     margin-bottom: getMargin(800);

@@ -1,18 +1,18 @@
 @use "../../abstracts/" as *;
 
 .hero {
+  position: relative;
   width: auto;
   margin-top: -(getMargin(600) + 2.625rem);
   background-color: getColor("bg-clr");
   color: getColor("text-3-clr");
-  z-index: -3;
+  z-index: 0;
   box-sizing: content-box;
   padding-top: (getMargin(1400) + 2.625rem);
 
   .container {
     position: relative;
     overflow: hidden;
-    z-index: 0;
   }
 
   .hero-slider {
@@ -42,13 +42,13 @@
 
     .hero-slider-content.prev,
     .hero-slider-content-bg.prev {
-      opacity: 1;
+      opacity: 0;
       transform: translateX(-100%);
     }
 
     .hero-slider-content.next,
     .hero-slider-content-bg.next {
-      opacity: 1;
+      opacity: 0;
       transform: translateX(100%);
     }
 
@@ -91,7 +91,6 @@
   }
 
   #{&}-img {
-    padding-top: getMargin(1800);
     margin: 0 auto;
     z-index: -3;
   }
@@ -100,7 +99,7 @@
     display: block;
     position: absolute;
     width: max-content;
-    top: 66%;
+    top: 70%;
     left: 50%;
     transform: translateX(-50%);
     padding: getPadding() getPadding(1200);
@@ -108,6 +107,12 @@
     letter-spacing: 0.2rem;
     background-color: getColor("bg-clr");
     cursor: pointer;
+    @include text(200);
+
+    @include sm {
+      // top: 66%;
+      @include text(300);
+    }
   }
 
   #{&}-slider-arrow-left,
@@ -143,10 +148,6 @@
     #{&}-front-text {
       top: 48%;
       @include text(1200);
-    }
-
-    #{&}-btn {
-      top: 62%;
     }
 
     #{&}-slider-arrow-left,

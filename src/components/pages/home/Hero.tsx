@@ -5,29 +5,23 @@ import { BsArrowRight, BsArrowLeft } from "react-icons/bs";
 import textArr from "../../../utils/constants/hero-slider";
 
 const Hero: FC = () => {
-  const [sliderIds, setSliderIds] = useState({ curId: 2, prevId: 1 });
+  const [curId, setCurId] = useState(2);
 
   const handleNextBtnClick = () => {
-    console.log("click");
-    let newCurId = sliderIds.curId + 1;
+    let newCurId = curId + 1;
     if (newCurId > textArr.length) {
       newCurId = 1;
     }
-    setSliderIds({ ...sliderIds, prevId: sliderIds.curId, curId: newCurId });
+    setCurId(newCurId);
   };
 
   const handlePrevBtnClick = () => {
-    console.log("click");
-    let newCurId = sliderIds.curId - 1;
+    let newCurId = curId - 1;
     if (newCurId < 1) {
       newCurId = textArr.length;
     }
-    setSliderIds({ ...sliderIds, prevId: sliderIds.curId, curId: newCurId });
+    setCurId(newCurId);
   };
-
-  function log() {
-    console.log("btn click");
-  }
 
   return (
     <section className="hero">
@@ -46,9 +40,10 @@ const Hero: FC = () => {
               return (
                 <div
                   className={`hero-slider-content-bg ${
-                    sliderIds.curId === id
+                    curId === id
                       ? "cur"
-                      : sliderIds.prevId === id
+                      : curId - 1 === id ||
+                        (curId === 1 && id === textArr.length)
                       ? "prev"
                       : "next"
                   }`}
@@ -64,9 +59,10 @@ const Hero: FC = () => {
               return (
                 <div
                   className={`hero-slider-content ${
-                    sliderIds.curId === id
+                    curId === id
                       ? "cur"
-                      : sliderIds.prevId === id
+                      : curId - 1 === id ||
+                        (curId === 1 && id === textArr.length)
                       ? "prev"
                       : "next"
                   }`}

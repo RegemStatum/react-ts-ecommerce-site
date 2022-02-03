@@ -1,19 +1,18 @@
 @use "../../abstracts/" as *;
 
 .pros {
-  position: static;
+  position: relative;
   font-family: "Montserrat", sans-serif;
   display: flex;
   gap: getMargin();
-
+  z-index: 2;
   flex-direction: column;
 
   &.container-2 {
-    margin-top: -4rem;
-    z-index: 3;
+    margin-top: -3.87rem;
 
-    @include xs {
-      margin-top: -4.5rem;
+    @include sm {
+      margin-top: -4.9rem;
     }
   }
 
