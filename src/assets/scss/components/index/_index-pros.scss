@@ -1,0 +1,90 @@
+@use "../../abstracts/" as *;
+
+.pros {
+  position: static;
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  gap: getMargin();
+
+  flex-direction: column;
+
+  &.container-2 {
+    margin-top: -4rem;
+    z-index: 3;
+
+    @include xs {
+      margin-top: -4.5rem;
+    }
+  }
+
+  @include sm {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  @include md {
+    gap: 0;
+    justify-content: center;
+  }
+
+  #{&}-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: getMargin(800);
+    padding: getPadding(1000);
+    background-color: getColor("text-3-clr");
+    border: 1px solid getColor("text-4-clr");
+    box-shadow: 0 0 3px getColor("text-4-clr");
+    border-radius: 0.2rem;
+    width: 100%;
+    max-width: 28rem;
+    margin: 0 auto;
+
+    @include sm {
+      width: 80%;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    @include md {
+      max-width: 20.625rem;
+      margin: 0;
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding: getPadding(1300);
+    }
+
+    .icon {
+      display: flex;
+      font-size: 2rem;
+      color: getColor("text-2-clr");
+    }
+
+    .name-description {
+      min-width: 160px;
+    }
+
+    .name {
+      color: getColor("text-1-clr");
+      @include text(400);
+    }
+
+    .description {
+      color: getColor("text-2-clr");
+      opacity: 0.8;
+      @include text(300);
+    }
+
+    @include md {
+      .name {
+        @include text(500);
+      }
+
+      .description {
+        @include text(400);
+      }
+    }
+  }
+}

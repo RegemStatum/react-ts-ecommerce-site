@@ -1,5 +1,5 @@
 import { IoPaperPlaneOutline } from "react-icons/io5";
-import { BiRefresh } from "react-icons/bi";
+import { FiRefreshCcw } from "react-icons/fi";
 import { IoCardOutline } from "react-icons/io5";
 import { IoPersonOutline } from "react-icons/io5";
 
@@ -13,7 +13,7 @@ const pros = [
   {
     name: "30 days return",
     description: "If goods have problem",
-    icon: <BiRefresh />,
+    icon: <FiRefreshCcw />,
     id: 2,
   },
   {

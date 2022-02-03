@@ -1,0 +1,106 @@
+@use "../../abstracts/" as *;
+
+.index-products {
+  display: none;
+
+  @include lg {
+    &.container-2 {
+      margin: getMargin(800) auto;
+    }
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: getMargin(800);
+
+    .ad {
+      font-family: "Montserrat", serif;
+      grid-column: 2/-1;
+      grid-row: 1/2;
+      background-color: #2f46b6;
+      display: flex;
+      justify-content: space-around;
+
+      .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        margin: getMargin(1800) 0 getMargin(1800) getMargin(1400);
+
+        span {
+          display: inline-block;
+          max-width: 3.7rem;
+          background-color: getColor("text-3-clr");
+          color: getColor("bg-clr");
+          font-weight: 600;
+          border-radius: 3px;
+          padding: 0 getPadding(600);
+          margin-bottom: getMargin(1600);
+        }
+
+        h5 {
+          font-weight: 500;
+          text-transform: uppercase;
+          @include text(500);
+          letter-spacing: 0.2rem;
+          margin-bottom: getMargin(600);
+        }
+
+        h4 {
+          font-family: "Playfair Display", sans-serif;
+          @include text(900);
+          letter-spacing: 0.05rem;
+          margin-bottom: getMargin(1700);
+        }
+
+        .buy-ref {
+          display: flex;
+          background-color: getColor("text-3-clr");
+          padding: getPadding() getPadding(1200);
+          border-radius: 1.5rem;
+          width: max-content;
+          p {
+            @include text(400);
+            color: getColor("bg-clr");
+
+            &:last-child {
+              position: relative;
+              font-weight: 700;
+              margin-left: getMargin();
+              padding-left: getPadding(600);
+
+              &:before {
+                content: "";
+                position: absolute;
+                width: 2px;
+                height: 14px;
+                background-color: getColor("bg-clr");
+                transform: translateX(-10px) translateY(4px);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .load {
+      margin: getMargin(800) 0;
+      grid-column: 2/4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-transform: uppercase;
+      font-family: "Montserrat", serif;
+      font-weight: 600;
+      @include text(300);
+      letter-spacing: 0.05rem;
+      background-color: transparent;
+      cursor: pointer;
+      svg {
+        display: flex;
+        @include text(400);
+        color: getColor("clr-2");
+        margin-right: getMargin(500);
+      }
+    }
+  }
+}

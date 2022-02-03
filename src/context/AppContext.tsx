@@ -14,6 +14,7 @@ import Airtable from "airtable";
 import reducer from "../reducers/appReducer";
 const initialState: StateType = {
   products: [],
+  popularProducts: [],
   isSidebarOpen: false,
 };
 

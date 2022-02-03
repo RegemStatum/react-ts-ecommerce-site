@@ -1,17 +1,18 @@
-@use "../abstracts/" as *;
+@use "../../abstracts/" as *;
 
 .hero {
   width: auto;
-  position: relative;
   margin-top: -(getMargin(600) + 2.625rem);
   background-color: getColor("bg-clr");
   color: getColor("text-3-clr");
-  z-index: -1;
-  pointer-events: auto;
+  z-index: -3;
+  box-sizing: content-box;
+  padding-top: (getMargin(1400) + 2.625rem);
 
   .container {
     position: relative;
     overflow: hidden;
+    z-index: 0;
   }
 
   .hero-slider {
@@ -19,10 +20,6 @@
     position: relative;
 
     .hero-slider-content-bg {
-      z-index: -1;
-    }
-
-    .hero-slider-inner-container {
       z-index: -1;
     }
 
@@ -34,6 +31,7 @@
       width: 100%;
       height: 100%;
       top: 0;
+      transition: all 1s ease-in-out;
     }
 
     .hero-slider-content.cur,
@@ -95,7 +93,7 @@
   #{&}-img {
     padding-top: getMargin(1800);
     margin: 0 auto;
-    z-index: -999;
+    z-index: -3;
   }
 
   #{&}-btn {
@@ -125,7 +123,7 @@
     cursor: pointer;
     color: getColor("text-3-clr");
     background-color: transparent;
-    z-index: 50;
+    z-index: 1;
   }
 
   #{&}-slider-arrow-left {

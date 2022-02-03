@@ -6,6 +6,7 @@ export enum appReducerActions {
 
 export interface appReducerStateType {
   products: Array<{ [key: string]: any }>;
+  popularProducts: Array<{ [key: string]: any }>;
   isSidebarOpen: boolean;
 }
 

@@ -6,6 +6,7 @@
   justify-content: space-between;
   padding-top: getPadding(600);
   font-family: "Montserrat", sans-serif;
+  z-index: 2;
 
   @include md {
     padding-top: getPadding(1000);

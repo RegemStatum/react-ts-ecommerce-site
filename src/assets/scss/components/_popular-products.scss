@@ -1,0 +1,75 @@
+@use "../abstracts/" as *;
+
+.popular-products {
+  font-family: "Montserrat", sans-serif;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding-top: getPadding(1700);
+  gap: getMargin();
+
+  &.container-2 {
+    margin-bottom: getMargin(800);
+  }
+
+  @include md {
+    grid-template-columns: repeat(2, 1fr);
+
+    .product-more {
+      justify-content: space-evenly;
+    }
+  }
+
+  @include lg {
+    grid-template-columns: repeat(4, 1fr);
+    gap: getMargin(800);
+  }
+
+  .product-more {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: getPadding(1900) getPadding(1400);
+  }
+
+  .product-more {
+    text-align: center;
+    width: 100%;
+    background-color: getColor("clr-5");
+    order: 3;
+
+    @include lg {
+      order: 0;
+    }
+
+    .icon {
+      width: 40px;
+      height: 50px;
+      margin-bottom: getMargin(1000);
+
+      @include md {
+        margin-bottom: getMargin(600);
+      }
+    }
+
+    .name {
+      @include text(500);
+      color: getColor("text-3-clr");
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: getMargin(1400);
+    }
+
+    .link {
+      display: flex;
+      align-items: center;
+      @include text(300);
+      text-transform: capitalize;
+      font-weight: 500;
+
+      .arrow {
+        @include text(500);
+        margin-left: getMargin(300);
+      }
+    }
+  }
+}

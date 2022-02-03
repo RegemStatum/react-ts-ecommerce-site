@@ -1,6 +1,7 @@
 @use "../abstracts" as *;
 
 .footer {
+  background-color: getColor("text-1-clr");
   padding: getPadding(1000) 0;
   font-family: "Montserrat", sans-serif;
 

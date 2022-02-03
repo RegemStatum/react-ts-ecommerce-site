@@ -9,8 +9,11 @@
 body {
   background-color: getColor("bg-color");
   color: getColor("text-color");
-  background-color: getColor("text-2-clr");
   font-weight: 500;
+
+  main {
+    z-index: -5;
+  }
 
   .container {
     width: 95%;
@@ -26,19 +29,33 @@ body {
     }
   }
 
-  .content-container {
-    width: 95%;
+  .container-2 {
+    width: 100%;
     margin: 0 auto;
 
     @include sm {
-      width: 96%;
+      width: 95%;
     }
 
     @include lg {
-      max-width: 1510px;
-      width: 93%;
+      max-width: 1550px;
+      width: 95%;
     }
   }
+
+  // .content-container {
+  //   width: 95%;
+  //   margin: 0 auto;
+
+  //   @include sm {
+  //     width: 96%;
+  //   }
+
+  //   @include lg {
+  //     max-width: 1510px;
+  //     width: 93%;
+  //   }
+  // }
 
   h1,
   h2,
