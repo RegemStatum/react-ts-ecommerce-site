@@ -5,17 +5,14 @@
   display: grid;
   grid-template-columns: 1fr;
   padding-top: getPadding(1300);
-  gap: getMargin();
+  gap: getMargin(800);
+
+  &.container-2 {
+    margin-bottom: getMargin();
+  }
 
   @include md {
     padding-top: getPadding(1700);
-  }
-
-  &.container-2 {
-    margin-bottom: getMargin(800);
-  }
-
-  @include md {
     grid-template-columns: repeat(2, 1fr);
 
     .product-more {
@@ -25,7 +22,19 @@
 
   @include lg {
     grid-template-columns: repeat(4, 1fr);
+    gap: getMargin();
+
+    &.container-2 {
+      margin-bottom: getMargin();
+    }
+  }
+
+  @include xl {
     gap: getMargin(800);
+
+    &.container-2 {
+      margin-bottom: getMargin(800);
+    }
   }
 
   .product-more {

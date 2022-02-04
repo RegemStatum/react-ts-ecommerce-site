@@ -5,12 +5,12 @@
 
   @include lg {
     &.container-2 {
-      margin: getMargin(800) auto;
+      margin: getMargin() auto;
     }
 
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: getMargin(800);
+    gap: getMargin();
 
     .ad {
       font-family: "Montserrat", serif;
@@ -101,6 +101,14 @@
         color: getColor("clr-2");
         margin-right: getMargin(500);
       }
+    }
+  }
+
+  @include xl {
+    gap: getMargin(800);
+
+    &.container-2 {
+      margin: getMargin(800) auto;
     }
   }
 }

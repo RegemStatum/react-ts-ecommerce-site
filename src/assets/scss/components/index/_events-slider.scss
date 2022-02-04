@@ -1,0 +1,75 @@
+@use "../../abstracts/" as *;
+
+.events-slider {
+  display: flex;
+  flex-direction: column;
+  @include backgroundImage("../../../images/index/event-slider.jpg");
+  min-height: 10rem;
+  padding: getPadding(1800) 0;
+  overflow: hidden;
+
+  &.container-2 {
+    margin: getMargin(800) auto;
+  }
+
+  .inner-container {
+    display: grid;
+    grid-auto-flow: column;
+    font-family: "Montserrat", serif;
+    color: getColor("text-3-clr");
+    transition: all 1300ms ease-in-out;
+
+    .info {
+      text-align: center;
+      width: 100vw;
+
+      @include sm {
+        width: 95vw;
+      }
+
+      h4 {
+        text-transform: uppercase;
+        font-weight: 400;
+        letter-spacing: 0.2rem;
+        @include text(300);
+        padding-bottom: getPadding(500);
+      }
+
+      h3 {
+        font-family: "Playfair Display", sans-serif;
+        color: getColor("text-3-clr");
+        font-weight: 400;
+        padding-bottom: getPadding(300);
+      }
+
+      p {
+        @include text(200);
+        letter-spacing: 0.075rem;
+      }
+    }
+  }
+
+  .control-markers {
+    max-width: 80px;
+    margin: getMargin(1600) auto 0 auto;
+    display: flex;
+    gap: getMargin(300);
+    justify-content: space-evenly;
+
+    .marker {
+      padding: 0;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: getColor("text-2-clr");
+      transition: all 1300ms ease-in-out;
+
+      cursor: pointer;
+
+      &.highlighted {
+        background-color: getColor("text-3-clr");
+        box-shadow: 0 0 3px getColor("text-3-clr");
+      }
+    }
+  }
+}
