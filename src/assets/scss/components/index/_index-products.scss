@@ -13,7 +13,7 @@
     gap: getMargin();
 
     .ad {
-      font-family: "Montserrat", serif;
+      font-family: "Montserrat", sans-serif;
       grid-column: 2/-1;
       grid-row: 1/2;
       background-color: #2f46b6;
@@ -46,7 +46,7 @@
         }
 
         h4 {
-          font-family: "Playfair Display", sans-serif;
+          font-family: "Playfair Display", serif;
           @include text(900);
           letter-spacing: 0.05rem;
           margin-bottom: getMargin(1700);
@@ -89,7 +89,7 @@
       align-items: center;
       justify-content: center;
       text-transform: uppercase;
-      font-family: "Montserrat", serif;
+      font-family: "Montserrat", sans-serif;
       font-weight: 600;
       @include text(300);
       letter-spacing: 0.05rem;

@@ -18,14 +18,14 @@
     color: getColor("text-3-clr");
     padding: getPadding(1300);
 
-    p,
-    a {
-      font-family: "Montserrat", serif;
+    .title,
+    .btn {
+      font-family: "Montserrat", sans-serif;
     }
 
-    span,
-    h4 {
-      font-family: "Playfair Display", sans-serif;
+    .number,
+    .offer {
+      font-family: "Playfair Display", serif;
     }
 
     .title {

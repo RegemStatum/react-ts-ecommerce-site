@@ -15,15 +15,20 @@
   .inner-container {
     display: grid;
     grid-auto-flow: column;
-    font-family: "Montserrat", serif;
+    font-family: "Montserrat", sans-serif;
     color: getColor("text-3-clr");
     transition: all 1300ms ease-in-out;
 
     .info {
       text-align: center;
       width: 100vw;
+      max-width: 1550px;
 
       @include sm {
+        width: 94vw;
+      }
+
+      @include md {
         width: 95vw;
       }
 
@@ -36,7 +41,7 @@
       }
 
       h3 {
-        font-family: "Playfair Display", sans-serif;
+        font-family: "Playfair Display", serif;
         color: getColor("text-3-clr");
         font-weight: 400;
         padding-bottom: getPadding(300);
