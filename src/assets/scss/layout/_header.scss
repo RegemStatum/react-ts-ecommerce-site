@@ -1,20 +1,28 @@
 @use "../abstracts" as *;
 
+body.home-page .header {
+  background-color: transparent;
+}
+
+.header {
+  background-color: getColor("bg-clr");
+}
+
 .header .container {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: getPadding(600);
+  padding: getPadding(600) 0;
   font-family: "Montserrat", sans-serif;
   z-index: 2;
 
   @include md {
-    padding-top: getPadding(1000);
+    padding: getPadding(800) 0;
   }
 
   @include lg {
-    padding-top: getPadding(1200);
+    padding: getPadding(900) 0;
   }
 
   .header-links,
@@ -57,13 +65,14 @@
     }
 
     .sublinks-container {
+      display: flex;
       width: 0;
       height: 0;
       opacity: 0;
       overflow: hidden;
       position: absolute;
       left: 50%;
-      background-color: getColor("clr-2");
+      background-color: getColor("text-1-clr");
       transform: translate(-50%, -3px);
       @include radius;
       transition: all 0.3s ease-in-out;
@@ -82,17 +91,20 @@
         position: absolute;
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;
-        border-bottom: 10px solid getColor("clr-2");
+        border-bottom: 10px solid getColor("text-1-clr");
         left: 50%;
         transform: translate(-50%, -60%);
         transition: none;
       }
 
       .sublinks {
+        height: 100%;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: getMargin(1000);
-        padding: getPadding(900);
+        align-items: center;
+        padding: getPadding(1100);
+        max-width: min-content;
 
         a {
           @include text(400);
@@ -101,6 +113,18 @@
           &:last-child {
             margin-right: 0;
           }
+        }
+      }
+
+      .img-container {
+        background-color: getColor("clr-3");
+        min-width: 170px;
+        @include radius;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+
+        img {
+          margin: 0 auto;
         }
       }
     }

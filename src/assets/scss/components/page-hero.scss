@@ -1,0 +1,36 @@
+@use "../abstracts/" as *;
+
+.page-hero {
+  background-color: getColor("clr-2");
+  min-height: 20vh;
+  text-align: center;
+  padding: getPadding(1200) 0;
+
+  p,
+  a,
+  h4 {
+    color: getColor("text-3-clr");
+  }
+
+  h4 {
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .path {
+    padding-top: getPadding(200);
+    display: flex;
+    gap: getMargin(200);
+    align-items: center;
+    justify-content: center;
+
+    a {
+      font-weight: 400;
+      @include text(300);
+    }
+
+    svg {
+      font-size: 0.7rem;
+    }
+  }
+}

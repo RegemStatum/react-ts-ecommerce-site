@@ -1,8 +1,27 @@
 @use "../abstracts/" as *;
 
 .error-page {
-  .btn {
-    margin: getMargin(1000) auto;
-    @include hugeBoxShadow;
+  text-align: center;
+
+  span {
+    display: block;
+    @include text(1000);
+    color: getColor("text-1-clr");
+    padding-top: getPadding(1700);
+    font-family: "Montserrat", sans-serif;
+
+    &:nth-child(2) {
+      @include text(1200);
+      padding-top: getPadding(1200);
+    }
+  }
+
+  .back-link {
+    display: inline-block;
+    color: getColor("text-3-clr");
+    background-color: getColor("bg-clr");
+    padding: getPadding(500) getPadding();
+    margin: getMargin(1200) 0;
+    @include radius;
   }
 }

@@ -16,6 +16,20 @@ const initialState: StateType = {
   products: [],
   popularProducts: [],
   isSidebarOpen: false,
+  curProduct: {
+    name: "",
+    reviewsStars: -1,
+    colors: [],
+    sizes: [],
+    isDiscounted: false,
+    price: -1,
+    discountedPrice: -1,
+    maxAmount: -1,
+    images: [],
+    specification: "",
+    description: "",
+    id: "",
+  },
 };
 
 // context
@@ -43,13 +57,15 @@ export const AppProvider: FC = ({ children }) => {
   };
 
   useEffect(() => {
-    base("product")
-      .select({ view: "Grid view" })
-      .eachPage((records, fetchNextPage) => {
-        dispatch({ type: Actions.SET_DATABASE, payload: { records } });
-        fetchNextPage();
-      });
-  }, []);
+    if (!state.products.length) {
+      base("product")
+        .select({ view: "Grid view" })
+        .eachPage((records, fetchNextPage) => {
+          dispatch({ type: Actions.SET_DATABASE, payload: { records } });
+          fetchNextPage();
+        });
+    }
+  }, [state.products.length]);
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

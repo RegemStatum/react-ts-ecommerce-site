@@ -1,0 +1,57 @@
+@use "../abstracts/" as *;
+
+.product-page {
+  font-family: "Montserrat", sans-serif;
+
+  #{&}-product {
+    .info {
+      & > p {
+        color: getColor("clr-2");
+        text-transform: uppercase;
+        font-weight: 500;
+      }
+
+      .name {
+        color: getColor("text-1-clr");
+        font-family: "Playfair Display", serif;
+        font-weight: 500;
+      }
+
+      .reviews-stars {
+        .filled {
+          color: getColor("clr-yellow");
+        }
+
+        .empty {
+          color: getColor("text-4-clr");
+        }
+      }
+
+      .color-size {
+        .colors {
+          & > * {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+          }
+
+          .red {
+            background-color: getColor("clr-red");
+          }
+          .blue {
+            background-color: getColor("clr-blue");
+          }
+          .black {
+            background-color: getColor("clr-black");
+          }
+          .yellow {
+            background-color: getColor("clr-yellow");
+          }
+          .green {
+            background-color: getColor("clr-green");
+          }
+        }
+      }
+    }
+  }
+}

@@ -29,7 +29,13 @@ const IndexProducts: FC = () => {
         if (!product) return <></>;
         const fields: ProductFields = product.fields;
         const { name, price, discountedPrice, images, isDiscounted } = fields;
-        const image = images[0].url;
+        let image = "";
+        if (images) {
+          image = images[0].url;
+        } else {
+          image = adImg;
+        }
+
         let formattedDiscountedPrice = formatPrice(discountedPrice);
         let formattedPrice = formatPrice(price);
         return (
@@ -40,6 +46,7 @@ const IndexProducts: FC = () => {
             discountedPrice={formattedDiscountedPrice}
             isDiscounted={isDiscounted}
             image={image}
+            id={product.id}
           />
         );
       })}

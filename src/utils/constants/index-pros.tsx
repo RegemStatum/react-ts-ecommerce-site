@@ -6,7 +6,7 @@ import { IoPersonOutline } from "react-icons/io5";
 const pros = [
   {
     name: "Free Shipping",
-    description: "Oders over $99",
+    description: "Orders over $99",
     icon: <IoPaperPlaneOutline />,
     id: 1,
   },

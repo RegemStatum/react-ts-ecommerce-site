@@ -38,6 +38,7 @@ const PopularProducts: FC = () => {
             discountedPrice={formattedDiscountedPrice}
             isDiscounted={isDiscounted}
             image={image}
+            id={product.id}
           />
         );
       })}

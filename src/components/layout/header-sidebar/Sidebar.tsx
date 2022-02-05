@@ -11,24 +11,20 @@ const Sidebar: FC = () => {
     dispatch,
   } = useAppContext();
 
-  if (isSidebarOpen) {
-    return (
-      <aside className="sidebar-container">
-        <div className="sidebar">
-          <NavLinks />
-          <AiFillCloseSquare
-            className="close-btn"
-            onClick={() => {
-              dispatch({ type: appReducerActions.CLOSE_SIDEBAR });
-            }}
-          />
-          <LoginSignup />
-        </div>
-      </aside>
-    );
-  } else {
-    return <></>;
-  }
+  return (
+    <aside className={`sidebar-container ${isSidebarOpen ? "show" : "hidden"}`}>
+      <div className="sidebar">
+        <NavLinks />
+        <AiFillCloseSquare
+          className="close-btn"
+          onClick={() => {
+            dispatch({ type: appReducerActions.CLOSE_SIDEBAR });
+          }}
+        />
+        <LoginSignup />
+      </div>
+    </aside>
+  );
 };
 
 export default Sidebar;

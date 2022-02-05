@@ -3,12 +3,22 @@
 .hero {
   position: relative;
   width: auto;
-  margin-top: -(getMargin(600) + 2.625rem);
+  margin-top: -(getMargin(1200) + 2.625rem);
   background-color: getColor("bg-clr");
   color: getColor("text-3-clr");
   z-index: 0;
   box-sizing: content-box;
-  padding-top: (getMargin(1400) + 2.625rem);
+  padding-top: (getMargin(1000) + 2.625rem);
+
+  @include md {
+    padding-top: (getMargin(1400) + 2.625rem);
+    margin-top: -(getMargin(1600) + 2.625rem);
+  }
+
+  @include lg {
+    padding-top: (getMargin(1600) + 2.625rem);
+    margin-top: -(getMargin(1800) + 2.625rem);
+  }
 
   .container {
     position: relative;
@@ -55,14 +65,6 @@
     .hero-btn {
       cursor: pointer;
     }
-  }
-
-  @include md {
-    margin-top: -(getMargin(1000) + 2.625rem);
-  }
-
-  @include lg {
-    margin-top: -(getMargin(1200) + 2.625rem);
   }
 
   #{&}-bg-text,

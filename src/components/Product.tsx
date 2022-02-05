@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { Link } from "react-router-dom";
 
 interface PropsType {
   name: string;
@@ -6,6 +7,7 @@ interface PropsType {
   discountedPrice: string;
   image: string;
   isDiscounted?: boolean;
+  id: string;
 }
 
 const Product: FC<PropsType> = ({
@@ -14,9 +16,10 @@ const Product: FC<PropsType> = ({
   discountedPrice,
   image,
   isDiscounted,
+  id,
 }) => {
   return (
-    <div className="product">
+    <Link to={`/products/product-${id}`} className="product">
       <div className="img-container">
         <img src={image} alt="product" />
         {isDiscounted && <div className="sale-div">sale</div>}
@@ -31,7 +34,7 @@ const Product: FC<PropsType> = ({
           )}
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

@@ -4,10 +4,15 @@
 
 // page
 .page-min-height {
-  // calc(2 * [header/footer] padding + [header/footer] height)
-  $headerHeight: calc(2 * getPadding(1000) + getFontSize(1200));
-  $footerHeight: calc(2 * getPadding(1000) + 2rem);
-  @include pageMinHeight($headerHeight, $footerHeight);
+  @include pageMinHeight(66px, 527px);
+
+  @include md {
+    @include pageMinHeight(74px, 258px);
+  }
+
+  @include lg {
+    @include pageMinHeight(80px, 240px);
+  }
 }
 
 .w-100 {

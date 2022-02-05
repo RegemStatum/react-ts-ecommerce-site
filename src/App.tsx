@@ -24,7 +24,7 @@ function App() {
         <Header />
         <Sidebar />
         <Routes>
-          <Route path="" element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="products" element={<ProductsPage />} />
           <Route path="products/:productId" element={<ProductPage />} />

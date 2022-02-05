@@ -89,7 +89,7 @@
     }
 
     & > h5 {
-      color: getColor("clr-black");
+      color: getColor("text-1-clr");
       text-transform: uppercase;
       padding: getPadding(800) getPadding(400);
       border-bottom: 1px solid getColor("text-4-clr");

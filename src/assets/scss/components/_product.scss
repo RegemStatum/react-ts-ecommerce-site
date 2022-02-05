@@ -10,6 +10,10 @@
   border: 1px solid getColor("text-4-clr");
   border-collapse: collapse;
 
+  &:hover {
+    transform: scale(1.03);
+  }
+
   .img-container {
     .sale-div {
       font-family: "Montserrat", sans-serif;
@@ -21,6 +25,7 @@
       background-color: getColor("clr-2");
       padding: 0 getPadding(400);
       border-radius: 3px;
+      text-transform: lowercase;
     }
   }
 
@@ -32,6 +37,8 @@
 
   .name {
     padding-bottom: getPadding(200);
+    color: getColor("clr-black");
+    text-transform: capitalize;
   }
 
   .price-container {

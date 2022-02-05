@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { useAppContext } from "../context/AppContext";
 import appContextValueType from "../types/appContextValue";
 import {
@@ -13,6 +13,14 @@ import PopularProducts from "../components/PopularProducts";
 import CompaniesSlider from "../components/CompaniesSlider";
 
 const HomePage: FC = () => {
+  useEffect(() => {
+    document.body.classList.add("home-page");
+
+    return () => {
+      document.body.classList.remove("home-page");
+    };
+  }, []);
+
   return (
     <main>
       <Hero />
