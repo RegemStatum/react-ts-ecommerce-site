@@ -6,7 +6,8 @@ const HomeSubLinks: FC = () => {
     <div className="sublinks">
       <CloseSidebarLink to="/" name="Home" />
       <CloseSidebarLink to="/products" name="Products" />
-      <CloseSidebarLink to="/" name="Contact" />
+      <CloseSidebarLink to="/cart" name="Cart" />
+      <CloseSidebarLink to="/login" name="Login" />
     </div>
   );
 };

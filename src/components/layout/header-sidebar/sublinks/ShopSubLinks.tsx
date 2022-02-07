@@ -4,11 +4,10 @@ import CloseSidebarLink from "../CloseSidebarLink";
 const ShopSubLinks: FC = () => {
   return (
     <div className="sublinks">
-      <CloseSidebarLink to="/" name="Product" />
+      <CloseSidebarLink to="/" name="Shops" />
       <CloseSidebarLink to="/products" name="Products" />
-      <CloseSidebarLink to="/err" name="Contact" />
-      <CloseSidebarLink to="/err" name="Phone" />
-      <CloseSidebarLink to="/1" name="Email" />
+      <CloseSidebarLink to="/" name="Phone" />
+      <CloseSidebarLink to="/" name="Email" />
     </div>
   );
 };

@@ -105,6 +105,7 @@ const ProductPage: FC = () => {
     });
   };
 
+  // show user message when product is added to cart
   useEffect(() => {
     if (isProductAddedToCart) {
       const timeout = setTimeout(() => {

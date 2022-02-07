@@ -7,10 +7,7 @@ interface PageHeroProps {
 }
 
 const PageHero: FC<PageHeroProps> = ({ path }) => {
-  const pathItems = path
-    .split("/")
-    .slice(0, -1)
-    .filter((item) => item !== "");
+  const pathItems = path.split("/").filter((item) => item !== "");
 
   const getPath = (pathId: number) => {
     let returnStr = "";
@@ -29,7 +26,7 @@ const PageHero: FC<PageHeroProps> = ({ path }) => {
           const pathTo = getPath(index);
           return (
             <Link to={pathTo} key={index}>
-              {pathPart}
+              {pathPart.includes("-") ? pathPart.split("-")[0] : pathPart}{" "}
               {index !== pathItems.length - 1 && <VscTriangleRight />}
             </Link>
           );

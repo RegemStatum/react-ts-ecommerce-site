@@ -1,6 +1,4 @@
 import React, { FC, useEffect } from "react";
-import { useAppContext } from "../context/AppContext";
-import appContextValueType from "../types/appContextValue";
 import {
   Blog,
   Hero,

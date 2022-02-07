@@ -1,6 +1,5 @@
 import React, { FC, useState, useRef, useEffect } from "react";
 import imagesArr from "../utils/constants/companies-slider";
-// arrows
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
 const CompaniesSlider: FC = () => {
