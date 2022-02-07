@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { useAppContext } from "../../../context/AppContext";
 import { formatPrice } from "../../../utils/formatPrice";
-import ProductFields from "../../../types/ProductFields";
+import ProductFields from "../../../types/CatalogProductFields";
 import Product from "../../Product";
 import adImg from "../../../assets/images/index/ad-img.png";
 import { BiRefresh } from "react-icons/bi";

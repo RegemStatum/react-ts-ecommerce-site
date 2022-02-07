@@ -1,3 +1,4 @@
+import CartProductFields from "./CartProductFields";
 import ProductPageFields from "./ProductPageFields";
 
 export enum appReducerActions {
@@ -5,6 +6,7 @@ export enum appReducerActions {
   CLOSE_SIDEBAR = "CLOSE_SIDEBAR",
   OPEN_SIDEBAR = "OPEN_SIDEBAR",
   GET_PRODUCT = "GET_PRODUCT",
+  SET_CART_PRODUCT = "SET_CART_PRODUCT",
 }
 
 export interface appReducerStateType {
@@ -12,6 +14,7 @@ export interface appReducerStateType {
   popularProducts: Array<{ [key: string]: any }>;
   isSidebarOpen: boolean;
   curProduct: ProductPageFields;
+  cartProducts: Array<CartProductFields>;
 }
 
 export interface appReducerActionType {

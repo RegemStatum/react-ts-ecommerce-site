@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { BsArrowRightShort } from "react-icons/bs";
 import { formatPrice } from "../utils/formatPrice";
 
-import ProductFields from "../types/ProductFields";
+import ProductFields from "../types/CatalogProductFields";
 
 const PopularProducts: FC = () => {
   const {

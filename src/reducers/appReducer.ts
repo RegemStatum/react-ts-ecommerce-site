@@ -4,12 +4,11 @@ import {
   appReducerActionType as ActionType,
   appReducerActions as Actions,
 } from "../types/appReducer";
+import CartProductFields from "../types/CartProductFields";
 
 const reducer = (state: StateType, action: ActionType) => {
   if (action.type === Actions.SET_DATABASE) {
     const { records } = action.payload!;
-    console.log(records);
-
     const popularProducts = records
       .filter((record: any) => {
         return record.fields.popular === true;
@@ -43,22 +42,32 @@ const reducer = (state: StateType, action: ActionType) => {
 
       const newProduct = {
         ...state.curProduct,
-        name: newProductFields.name,
-        reviewsStars: newProductFields.reviewsStars,
-        colors: newProductFields.colors,
-        sizes: newProductFields.sizes,
-        isDiscounted: newProductFields.isDiscounted,
-        price: newProductFields.price,
-        discountedPrice: newProductFields.discountedPrice,
-        maxAmount: newProductFields.maxAmount,
-        images: newProductFields.images,
-        specification: newProductFields.specification,
-        description: newProductFields.description,
-        id: newProductFields.id,
+        ...newProductFields,
       };
       return { ...state, curProduct: newProduct };
     }
     return { ...state };
+  }
+  if (action.type === Actions.SET_CART_PRODUCT) {
+    const newProduct = action.payload as CartProductFields;
+    const productsWithSameId = state.cartProducts.filter(
+      (item) => item.id === newProduct.id
+    );
+    const sameProduct = productsWithSameId.find(
+      (item) => item.color === newProduct.color && item.size === newProduct.size
+    );
+
+    if (sameProduct) {
+      if (sameProduct.amount === newProduct.amount) {
+        return { ...state };
+      } else {
+        const sameProductIndex = state.cartProducts.indexOf(sameProduct);
+        let newCartProducts = [...state.cartProducts];
+        newCartProducts[sameProductIndex] = newProduct;
+        return { ...state, cartProducts: newCartProducts };
+      }
+    }
+    return { ...state, cartProducts: [...state.cartProducts, newProduct] };
   }
   return { ...state };
 };

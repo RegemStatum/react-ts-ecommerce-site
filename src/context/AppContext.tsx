@@ -30,6 +30,7 @@ const initialState: StateType = {
     description: "",
     id: "",
   },
+  cartProducts: [],
 };
 
 // context

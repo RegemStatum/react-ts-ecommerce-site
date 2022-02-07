@@ -2,7 +2,9 @@
 
 .page-hero {
   background-color: getColor("clr-2");
-  min-height: 20vh;
+  min-height: 118px;
+  height: 20vh;
+  max-height: 140px;
   text-align: center;
   padding: getPadding(1200) 0;
 
