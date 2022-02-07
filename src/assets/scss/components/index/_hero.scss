@@ -3,7 +3,6 @@
 .hero {
   position: relative;
   width: auto;
-  min-height: 70vh;
   margin-top: -(getMargin(1200) + 2.625rem);
   background-color: getColor("bg-clr");
   color: getColor("text-3-clr");
@@ -14,6 +13,7 @@
   @include md {
     padding-top: (getMargin(1400) + 2.625rem);
     margin-top: -(getMargin(1600) + 2.625rem);
+    min-height: 70vh;
   }
 
   @include lg {
