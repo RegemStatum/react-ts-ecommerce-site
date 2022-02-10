@@ -1,0 +1,65 @@
+@use "../../abstracts/" as *;
+
+.special-offers {
+  display: grid;
+  grid-template-columns: 1fr;
+  color: getColor("text-3-clr");
+
+  gap: getMargin(800);
+
+  .special-offer {
+    display: flex;
+    background-color: getColor("clr-3");
+    padding: getPadding(1000);
+
+    h5,
+    p {
+      font-family: "Montserrat", sans-serif;
+    }
+
+    h5 {
+      font-weight: 500;
+      text-transform: uppercase;
+      @include text(400);
+      letter-spacing: 0.15rem;
+      padding-bottom: getPadding(200);
+    }
+
+    h4 {
+      font-family: "Playfair Display", serif;
+      @include text(700);
+      padding-bottom: getPadding(900);
+    }
+
+    img {
+      display: none;
+    }
+  }
+
+  @include sm {
+    .special-offer {
+      justify-content: space-evenly;
+      padding: 0;
+
+      .info {
+        padding: getPadding(1400) 0 getPadding(1400) getPadding(700);
+
+        h5 {
+          padding-bottom: getPadding(700);
+        }
+
+        h4 {
+          padding-bottom: getPadding(1400);
+        }
+      }
+
+      img {
+        display: block;
+      }
+    }
+  }
+
+  @include md {
+    grid-template-columns: 1fr 1fr;
+  }
+}

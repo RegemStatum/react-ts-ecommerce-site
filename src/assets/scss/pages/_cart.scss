@@ -1,0 +1,231 @@
+@use "../abstracts/" as *;
+
+.cart-page {
+  .no-products {
+    text-align: center;
+    padding: getPadding(1200) 0;
+
+    h4 {
+      font-family: "Montserrat", sans-serif;
+      color: getColor("text-1-clr");
+      font-weight: 600;
+      padding-bottom: getPadding(1200);
+    }
+
+    a {
+      @include btn;
+    }
+  }
+
+  .cart-products {
+    margin: getMargin(1000) auto 0 auto;
+    border-left: 1px dashed getColor("text-4-clr");
+    border-right: 1px dashed getColor("text-4-clr");
+
+    p,
+    h4,
+    a {
+      font-family: "Montserrat", sans-serif;
+    }
+
+    .titles,
+    .cart-product {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+
+      & > * {
+        border-right: 1px dashed getColor("text-4-clr");
+
+        &:last-child {
+          border-right: none;
+        }
+      }
+    }
+
+    .titles {
+      text-align: center;
+      font-weight: 600;
+      text-transform: capitalize;
+      padding: getPadding(600) 0;
+      border-top: 1px dashed getColor("text-4-clr");
+    }
+
+    .cart-product {
+      padding: getPadding(600) 0;
+      justify-content: center;
+      border-top: 1px dashed getColor("text-4-clr");
+
+      &:last-child {
+        border-bottom: 1px dashed getColor("text-4-clr");
+      }
+
+      .info {
+        img {
+          width: 120px;
+          height: 120px;
+          margin: 0 auto;
+          @include radius;
+        }
+
+        .name {
+          text-align: center;
+          padding-top: getPadding();
+          font-weight: 600;
+        }
+
+        .color-container,
+        .size-container {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .color,
+          .size {
+            margin-left: getMargin(300);
+          }
+        }
+
+        .color {
+          width: 10px;
+          height: 10px;
+          margin-top: getMargin(100);
+
+          @include radius;
+
+          &.red {
+            background-color: getColor("clr-red");
+          }
+          &.blue {
+            background-color: getColor("clr-blue");
+          }
+          &.black {
+            background-color: getColor("clr-black");
+          }
+          &.yellow {
+            background-color: getColor("clr-yellow");
+          }
+          &.green {
+            background-color: getColor("clr-green");
+          }
+        }
+      }
+
+      .price-container,
+      .amount,
+      .subtotal {
+        text-align: center;
+      }
+
+      .amount {
+        font-family: "Montserrat", sans-serif;
+        display: flex;
+        justify-content: center;
+
+        gap: getMargin(300);
+
+        @include md {
+          gap: getMargin();
+        }
+
+        & > p {
+          width: max-content;
+        }
+
+        button {
+          position: relative;
+          cursor: pointer;
+          margin-top: getMargin(100);
+          color: getColor("text-3-clr");
+          width: 18px;
+          height: 18px;
+          background-color: getColor("clr-2");
+          border-radius: 50%;
+
+          p {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+      }
+
+      .price-container {
+        .discounted-price {
+          color: getColor("bg-clr");
+        }
+        .crossed {
+          text-decoration: line-through;
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+
+  .control {
+    display: flex;
+    flex-direction: column;
+    gap: getMargin(1300);
+
+    @include lg {
+      gap: getMargin(700);
+    }
+
+    p {
+      @include text(500);
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+
+      span {
+        display: inline-block;
+        padding: getPadding(300) getPadding();
+        background-color: getColor("clr-green");
+        color: getColor("text-3-clr");
+        font-weight: 600;
+        @include radius;
+      }
+    }
+
+    a,
+    button {
+      width: max-content;
+      display: inline-block;
+      @include btn;
+      @include text(300);
+      padding: getPadding(300);
+      text-transform: capitalize;
+    }
+
+    .continue-clear {
+      display: flex;
+      gap: getMargin(500);
+      margin-top: getMargin(700);
+
+      button {
+        background-color: getColor("clr-red");
+      }
+    }
+
+    .total-container {
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      margin-bottom: getMargin(1000);
+
+      button {
+        width: 12.3rem;
+        margin-top: getMargin(600);
+        @include text(500);
+      }
+
+      button:disabled {
+        opacity: 0.5;
+      }
+
+      p:last-child {
+        @include text(200);
+        margin: getMargin(300) 0;
+      }
+    }
+  }
+}

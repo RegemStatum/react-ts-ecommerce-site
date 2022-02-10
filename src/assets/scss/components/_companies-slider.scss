@@ -1,0 +1,61 @@
+@use "../abstracts/" as *;
+
+.companies-slider {
+  position: relative;
+  align-items: center;
+  overflow: hidden;
+  display: none;
+
+  @include md {
+    display: flex;
+  }
+
+  &.container-2 {
+    margin: getMargin(1700) auto;
+  }
+
+  .control-btn {
+    position: absolute;
+    background-color: transparent;
+    cursor: pointer;
+    z-index: 1;
+
+    &:first-child {
+      left: -16px;
+    }
+
+    &:last-child {
+      right: -16px;
+    }
+
+    &.hide {
+      display: none;
+    }
+  }
+
+  svg {
+    display: flex;
+    font-size: 2rem;
+    color: getColor("clr-black");
+  }
+
+  .inner-container {
+    display: flex;
+    align-items: center;
+    flex: none;
+    position: relative;
+    transition: all 1s ease-in-out;
+
+    .img-container {
+      width: 24vw;
+      max-width: 387px;
+      img {
+        margin: 0 auto;
+      }
+
+      &:first-child {
+        width: 23vw;
+      }
+    }
+  }
+}

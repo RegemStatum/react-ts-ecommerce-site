@@ -1,0 +1,253 @@
+@use "../../abstracts/" as *;
+
+.blog {
+  display: grid;
+  gap: getMargin(800);
+
+  &.container-2 {
+    margin: getMargin(800) auto;
+  }
+
+  .ad {
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+    @include backgroundImage("../../images/index/webp/ad-2-img.webp");
+    color: getColor("text-3-clr");
+    padding: getPadding(1300);
+
+    .title,
+    .btn {
+      font-family: "Montserrat", sans-serif;
+    }
+
+    .number,
+    .offer {
+      font-family: "Playfair Display", serif;
+    }
+
+    .title {
+      text-transform: uppercase;
+      letter-spacing: 0.15rem;
+      padding-bottom: getPadding(1500);
+    }
+
+    .number {
+      @include text(1500);
+      font-weight: 400;
+    }
+
+    .offer {
+      padding-top: getPadding(500);
+      font-weight: 400;
+      @include text(1000);
+      text-transform: capitalize;
+    }
+
+    .btn {
+      width: 10rem;
+      margin: getMargin(2200) auto getMargin() auto;
+      display: inline-block;
+      text-transform: capitalize;
+      padding: getPadding(500) getPadding(1000);
+      border-radius: 1.5rem;
+      font-weight: 600;
+      background-color: getColor("bg-clr");
+      cursor: pointer;
+    }
+
+    @include sm {
+      padding: getPadding(1000);
+
+      .title {
+        padding-bottom: getPadding(800);
+      }
+
+      .number {
+        @include text(1400);
+      }
+
+      .offer {
+        padding-top: getPadding(1300);
+        @include text(900);
+      }
+
+      .btn {
+        margin-top: getMargin(1800);
+      }
+    }
+  }
+
+  .popular {
+    display: flex;
+    flex-direction: column;
+
+    a {
+      color: getColor("clr-black");
+    }
+
+    & > h5 {
+      color: getColor("text-1-clr");
+      text-transform: uppercase;
+      padding: getPadding(800) getPadding(400);
+      border-bottom: 1px solid getColor("text-4-clr");
+    }
+
+    border: 1px solid getColor("text-4-clr");
+
+    .inner-container {
+      padding: getPadding(1000) 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: getMargin(800);
+
+      .small-posts > a {
+        margin-top: getMargin(700);
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+      }
+    }
+
+    .post {
+      .date,
+      .discuss {
+        @include text(200);
+      }
+
+      .date {
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        margin-bottom: getMargin();
+
+        .clock {
+          margin-right: getMargin(300);
+        }
+      }
+
+      .info > h5 {
+        padding-bottom: getPadding();
+      }
+
+      .discuss {
+        display: flex;
+        color: getColor("clr-black");
+
+        .likes,
+        .comments {
+          display: flex;
+          gap: getMargin(200);
+          align-items: center;
+
+          &:first-child {
+            margin-right: getMargin();
+
+            &:after {
+              content: "";
+              width: 1px;
+              height: 10px;
+              background-color: getColor("text-3-clr");
+              transform: translateX(getMargin());
+            }
+          }
+
+          &:last-child {
+            margin-left: getMargin();
+          }
+        }
+      }
+
+      .info {
+        font-family: "Montserrat", sans-serif;
+
+        h5 {
+          font-family: "Playfair Display", serif;
+          font-weight: 400;
+        }
+      }
+    }
+
+    .small-post {
+      display: flex;
+
+      &:first-child {
+        margin-bottom: getMargin(700);
+      }
+
+      img {
+        height: 100px;
+        width: 100px;
+      }
+
+      .info {
+        padding-left: getPadding(900);
+      }
+
+      h5 {
+        color: getColor("clr-black");
+      }
+
+      .discuss .comments:first-child {
+        &:after {
+          background-color: getColor("text-2-clr");
+        }
+      }
+
+      .date,
+      .discuss {
+        color: getColor("text-2-clr");
+      }
+    }
+
+    .big-post {
+      @include backgroundImage("../../images/index/webp/post-1-img.webp");
+      padding: getPadding(800);
+
+      p,
+      h5,
+      .discuss {
+        color: getColor("text-3-clr");
+      }
+    }
+  }
+
+  @include sm {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include lg {
+    grid-template-columns: repeat(4, 1fr);
+
+    .popular {
+      grid-column: 2/-1;
+
+      & > h5 {
+        padding: getPadding(1100) getPadding(1700);
+      }
+
+      .inner-container {
+        padding: getPadding(1800) getPadding(1600);
+        grid-template-columns: repeat(5, 1fr);
+        height: 100%;
+
+        .big-post {
+          grid-column: 1/4;
+          display: flex;
+          align-items: flex-end;
+
+          .info {
+            max-width: 240px;
+            padding-bottom: getPadding(800);
+          }
+        }
+
+        .small-posts {
+          grid-column: 4/-1;
+        }
+      }
+    }
+  }
+}

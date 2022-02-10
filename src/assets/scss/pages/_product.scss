@@ -1,0 +1,334 @@
+@use "../abstracts/" as *;
+
+.product-page {
+  font-family: "Montserrat", sans-serif;
+
+  #{&}-product {
+    display: flex;
+    flex-direction: column;
+    margin-top: getMargin(1500);
+
+    .info {
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto;
+      padding-top: getPadding(800);
+
+      & > p {
+        color: getColor("clr-2");
+        text-transform: uppercase;
+        font-weight: 500;
+        letter-spacing: 0.1rem;
+      }
+
+      .name {
+        color: getColor("text-1-clr");
+        font-family: "Playfair Display", serif;
+        font-weight: 500;
+      }
+
+      .reviews-stars {
+        margin: getMargin(600) 0;
+
+        .filled {
+          color: getColor("clr-yellow");
+        }
+
+        .empty {
+          color: getColor("text-4-clr");
+        }
+      }
+
+      .color-size {
+        font-weight: 700;
+        margin-bottom: getMargin(1000);
+
+        & > div > p {
+          margin-bottom: getMargin(200);
+        }
+
+        p {
+          text-transform: uppercase;
+        }
+
+        .colors {
+          display: flex;
+          gap: getMargin(300);
+          margin-bottom: getMargin(700);
+
+          & > p {
+            padding-bottom: getPadding(200);
+          }
+
+          & > * {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+          }
+
+          .red {
+            background-color: getColor("clr-red");
+
+            &.chosen-clr {
+              box-shadow: 0 0 2px 2px getColor("clr-red");
+              border: 1px solid getColor("clr-red");
+            }
+          }
+          .blue {
+            background-color: getColor("clr-blue");
+
+            &.chosen-clr {
+              box-shadow: 0 0 2px 2px getColor("clr-blue");
+              border: 1px solid getColor("clr-blue");
+            }
+          }
+          .black {
+            background-color: getColor("clr-black");
+
+            &.chosen-clr {
+              box-shadow: 0 0 2px 2px getColor("clr-black");
+              border: 1px solid getColor("clr-black");
+            }
+          }
+          .yellow {
+            background-color: getColor("clr-yellow");
+
+            &.chosen-clr {
+              box-shadow: 0 0 2px 2px getColor("clr-yellow");
+              border: 1px solid getColor("clr-yellow");
+            }
+          }
+          .green {
+            background-color: getColor("clr-green");
+
+            &.chosen-clr {
+              box-shadow: 0 0 2px 2px getColor("clr-green");
+              border: 1px solid getColor("clr-green");
+            }
+          }
+
+          .chosen-clr {
+            background-color: getColor("text-3-clr");
+          }
+
+          .chosen {
+            color: getColor("text-1-clr");
+            font-size: 1.2rem;
+          }
+        }
+
+        .sizes {
+          display: flex;
+          gap: getMargin(800);
+
+          & > p {
+            cursor: pointer;
+          }
+
+          .chosen {
+            color: getColor("clr-2");
+          }
+        }
+      }
+
+      .price {
+        display: flex;
+        align-items: flex-end;
+
+        .discounted-price {
+          @include text(600);
+          color: getColor("clr-red");
+          margin-right: getMargin();
+        }
+
+        .non-discounted-price {
+          padding-bottom: getPadding(200);
+          @include text(600);
+
+          &.crossed {
+            text-decoration: line-through;
+            @include text(300);
+          }
+        }
+      }
+
+      .amount-add-to-cart {
+        display: flex;
+        margin: getMargin() 0;
+        gap: getMargin();
+      }
+
+      .amount {
+        display: flex;
+        width: max-content;
+        align-items: center;
+        gap: getMargin(300);
+        background-color: getColor("clr-4");
+        border: 1px solid getColor("text-4-clr");
+        border-radius: 1rem;
+
+        button {
+          background-color: transparent;
+          cursor: pointer;
+
+          &:first-child {
+            margin-left: getMargin(200);
+          }
+
+          &:last-child {
+            margin-right: getMargin(200);
+          }
+        }
+      }
+
+      .add-to-cart {
+        @include text(300);
+        padding: getPadding(200) getPadding(600);
+        color: getColor("text-3-clr");
+        background-color: getColor("clr-2");
+        border-radius: 1rem;
+        cursor: pointer;
+      }
+
+      .added-product {
+        margin-left: getMargin();
+      }
+    }
+
+    .images {
+      max-width: 700px;
+      display: grid;
+      align-items: center;
+      grid-template-columns: repeat(4, 1fr);
+      margin: 0 auto getMargin(1000) auto;
+      order: -1;
+
+      & > img {
+        height: 100%;
+        cursor: pointer;
+      }
+
+      .big-img {
+        width: 100%;
+        grid-column: 1/-1;
+        grid-row: 1/2;
+        border: 1px solid getColor("text-4-clr");
+        padding: getPadding(600);
+      }
+
+      .small-img {
+        height: min-content;
+        padding: getPadding(600);
+        border: 1px solid getColor("text-4-clr");
+        border-collapse: collapse;
+      }
+    }
+
+    @include lg {
+      flex-direction: row-reverse;
+      margin: getMargin(2100) auto getMargin(1800) auto;
+
+      .info {
+        padding-top: getPadding();
+
+        .color-size {
+          display: flex;
+          gap: getMargin(2200);
+
+          .size p {
+            margin-bottom: getMargin();
+          }
+        }
+
+        .price {
+          margin-bottom: getMargin(900);
+        }
+      }
+
+      .images {
+        max-width: 570px;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+
+        .big-img {
+          padding: getPadding(1200);
+          height: 100%;
+          grid-column: 1/5;
+          grid-row: 1/5;
+        }
+
+        .small-img {
+          grid-column: 5/-1;
+          height: min-content;
+          padding: getPadding(600);
+          border: 1px solid getColor("text-4-clr");
+          border-collapse: collapse;
+        }
+      }
+    }
+  }
+
+  .specification-description {
+    margin: getMargin(1000) auto 0 auto;
+    max-width: 700px;
+
+    @include lg {
+      max-width: 1550px;
+    }
+
+    .titles {
+      display: flex;
+      gap: getMargin(1000);
+      padding-left: getPadding(700);
+      border-top: 1px solid getColor("text-4-clr");
+      border-left: 1px solid getColor("text-4-clr");
+      border-right: 1px solid getColor("text-4-clr");
+      cursor: pointer;
+
+      p {
+        text-transform: uppercase;
+        color: getColor("text-2-clr");
+        font-weight: 700;
+        padding: getPadding(700) 0;
+
+        &.highlight {
+          color: getColor("clr-2");
+          border-bottom: 3px solid getColor("clr-2");
+        }
+      }
+    }
+
+    .info {
+      border: 1px solid getColor("text-4-clr");
+      padding: getPadding(700);
+      background-color: getColor("clr-4");
+
+      .specification p {
+        padding-bottom: getPadding();
+      }
+
+      .description p {
+        line-height: 1.7;
+
+        @include lg {
+          max-width: 700px;
+        }
+      }
+
+      .show {
+        opacity: 1;
+        height: auto;
+      }
+
+      .hide {
+        opacity: 0;
+        height: 0;
+        overflow: hidden;
+      }
+    }
+  }
+}

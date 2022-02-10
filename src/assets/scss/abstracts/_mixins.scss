@@ -1,0 +1,49 @@
+@use "./functions" as *;
+
+// getText
+@mixin text($value: 400) {
+  font-size: getFontSize($value);
+  line-height: getLineHeight($value);
+}
+
+// styling
+@mixin radius($value: 400) {
+  border-radius: getBorderRadius($value);
+}
+
+@mixin textShadow($color: "text-color", $radius: 7px) {
+  text-shadow: getColor($color) 0 0 $radius;
+}
+
+@mixin pageMinHeight($headerHeight: 0px, $footerHeight: 0px) {
+  min-height: calc(100vh - $headerHeight - $footerHeight);
+}
+
+@mixin backgroundImage($path: "") {
+  background-image: url($path);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@mixin btn {
+  text-transform: none;
+  background-color: getColor("clr-2");
+  color: getColor("text-3-clr");
+  font-family: "Montserrat", sans-serif;
+  padding: getPadding(500) getPadding();
+  cursor: pointer;
+  @include radius;
+  @include text();
+}
+
+// //##################
+// // NOT SURE TO USE
+// //##################
+// @mixin ref($font-size: 400, $color: "first-color") {
+//   font-size: getFontSize($font-size);
+//   font-weight: 600;
+//   color: getColor($color);
+//   text-decoration: none;
+//   text-transform: uppercase;
+// }

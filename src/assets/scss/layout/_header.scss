@@ -1,0 +1,158 @@
+@use "../abstracts" as *;
+
+body.home-page .header {
+  background-color: transparent;
+}
+
+.header {
+  background-color: getColor("bg-clr");
+}
+
+.header .container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: getPadding(600) 0;
+  font-family: "Montserrat", sans-serif;
+  z-index: 2;
+
+  @include md {
+    padding: getPadding(800) 0;
+  }
+
+  @include lg {
+    padding: getPadding(900) 0;
+  }
+
+  .header-links,
+  .login-signup {
+    display: none;
+  }
+
+  .header-links nav {
+    display: flex;
+    align-items: center;
+    min-height: 2.5rem;
+
+    & > * {
+      margin-right: getMargin(1500);
+    }
+  }
+
+  .link-falldown {
+    position: relative;
+
+    &:hover {
+      .sublinks-container {
+        width: auto;
+        height: auto;
+        opacity: 1;
+        overflow: visible;
+      }
+    }
+
+    .name {
+      min-height: 2.5rem;
+      display: flex;
+      align-items: center;
+
+      .link-name {
+        cursor: default;
+        pointer-events: none;
+      }
+    }
+
+    .sublinks-container {
+      display: flex;
+      width: 0;
+      height: 0;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      left: 50%;
+      background-color: getColor("text-1-clr");
+      transform: translate(-50%, -3px);
+      @include radius;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        width: auto;
+        height: auto;
+        opacity: 1;
+        overflow: visible;
+      }
+
+      &:before {
+        content: "";
+        width: 0;
+        height: 0;
+        position: absolute;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid getColor("text-1-clr");
+        left: 50%;
+        transform: translate(-50%, -60%);
+        transition: none;
+      }
+
+      .sublinks {
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: getMargin(1000);
+        align-items: center;
+        padding: getPadding(1100);
+        max-width: min-content;
+
+        a {
+          @include text(400);
+          text-transform: none;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+
+      .img-container {
+        background-color: getColor("clr-3");
+        min-width: 170px;
+        @include radius;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+
+        img {
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+
+  .header-logo img {
+    width: 6rem;
+  }
+
+  .mobile-menu {
+    display: flex;
+    align-items: center;
+    color: getColor("text-3-clr");
+    font-size: 2.5rem;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  @include lg {
+    .header-links {
+      display: block;
+    }
+
+    .login-signup {
+      display: flex;
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+  }
+}

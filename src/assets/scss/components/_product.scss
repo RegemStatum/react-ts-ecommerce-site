@@ -1,0 +1,64 @@
+@use "../abstracts/" as *;
+
+.product {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  padding: getPadding(1900) getPadding(1400);
+  font-family: "Playfair Display", serif;
+  border: 1px solid getColor("text-4-clr");
+  border-collapse: collapse;
+
+  &:hover {
+    transform: scale(1.03);
+  }
+
+  .img-container {
+    .sale-div {
+      font-family: "Montserrat", sans-serif;
+      color: getColor("text-3-clr");
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(-80%, 300%);
+      background-color: getColor("clr-2");
+      padding: 0 getPadding(400);
+      border-radius: 3px;
+      text-transform: lowercase;
+    }
+  }
+
+  img {
+    margin-bottom: getMargin(1000);
+    min-height: 164px;
+    max-height: 200px;
+  }
+
+  .name {
+    padding-bottom: getPadding(200);
+    color: getColor("clr-black");
+    text-transform: capitalize;
+  }
+
+  .price-container {
+    font-family: "Montserrat", sans-serif;
+    display: flex;
+
+    .price {
+      color: getColor("clr-2");
+    }
+
+    &.discounted {
+      .price {
+        color: getColor("text-2-clr");
+        text-decoration: line-through;
+        margin-right: getMargin(500);
+      }
+
+      .discounted-price {
+        color: getColor("clr-2");
+      }
+    }
+  }
+}

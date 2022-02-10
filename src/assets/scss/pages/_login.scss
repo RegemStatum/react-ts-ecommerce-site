@@ -1,0 +1,65 @@
+@use "../abstracts/" as *;
+
+.login-page {
+  .cart-products-refs a,
+  button {
+    @include btn;
+  }
+
+  .user-info {
+    display: flex;
+    justify-content: center;
+    padding-top: getPadding(1500);
+
+    img {
+      width: 90px;
+      height: 90px;
+      @include radius;
+    }
+
+    p,
+    h4 {
+      color: getColor("text-2-clr");
+      font-family: "Montserrat", sans-serif;
+    }
+
+    .email-info {
+      margin-left: getMargin(800);
+      display: flex;
+      flex-direction: column;
+
+      .name {
+        padding-bottom: getPadding(200);
+      }
+    }
+  }
+
+  .cart-products-refs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: getMargin(800);
+    padding-top: getPadding(1200);
+
+    button {
+      background-color: getColor("clr-red");
+    }
+  }
+
+  .login-btn-container {
+    padding: getPadding(1200);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    .login {
+      margin: getMargin(1000);
+    }
+
+    h4 {
+      color: getColor("text-2-clr");
+      font-family: "Montserrat", sans-serif;
+    }
+  }
+}

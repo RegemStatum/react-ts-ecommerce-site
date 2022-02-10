@@ -1,0 +1,16 @@
+// global
+@forward "./popular-products";
+@forward "./companies-slider";
+@forward "./product";
+@forward "./login-signup";
+@forward "./page-hero.scss";
+// index page
+@forward "./index/hero";
+@forward "./index/index-pros";
+@forward "./index/index-products";
+@forward "./index/special-offers";
+@forward "./index/blog";
+@forward "./index/events-slider";
+// catalog page
+@forward "./catalog/filter-modal";
+@forward "./catalog/catalog-products";
