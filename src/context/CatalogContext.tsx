@@ -1,13 +1,15 @@
-import React, { FC, useContext, useReducer } from "react";
+import React, { FC, useContext, useEffect, useReducer } from "react";
 
 // reducer
 import {
+  catalogActions,
   catalogActionType as ActionType,
   catalogStateType as StateType,
 } from "../types/catalogReducer";
 import reducer from "../reducers/catalogReducer";
 
 import CatalogContextValueType from "../types/catalogContextValue";
+import { useAppContext } from "./AppContext";
 
 const initialState = {
   products: [],
@@ -30,6 +32,16 @@ export const CatalogProvider: FC = ({ children }) => {
     reducer,
     initialState
   );
+
+  const {
+    state: { products: appProducts },
+  } = useAppContext();
+
+  useEffect(() => {
+    if (!state.products.length) {
+      dispatch({ type: catalogActions.SET_PRODUCTS, payload: { appProducts } });
+    }
+  }, [state.products.length, appProducts]);
 
   // context value
   const providerValue = { state, dispatch };

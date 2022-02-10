@@ -2,8 +2,11 @@
 
 .catalog-products-container {
   .btn-load-more {
+    @include btn-load-more;
+    margin: getMargin(1000) auto;
+
     &.show {
-      display: block;
+      display: flex;
     }
 
     &.hide {
