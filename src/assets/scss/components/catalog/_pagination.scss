@@ -1,0 +1,19 @@
+@use "../../abstracts/" as *;
+
+.pagination {
+  display: flex;
+  justify-content: center;
+
+  .btn-page {
+    width: 4rem;
+    height: 4rem;
+    font-family: "Montserrat", sans-serif;
+    border: 1px solid getColor("text-4-clr");
+    background-color: transparent;
+
+    &.active {
+      background-color: getColor("bg-clr");
+      border: none;
+    }
+  }
+}

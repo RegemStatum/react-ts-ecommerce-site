@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   HomePage,
   ErrorPage,
-  ProductsPage,
+  CatalogPage,
   ProductPage,
   LoginPage,
   CartPage,
@@ -39,7 +39,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="login" element={<LoginPage />} />
-                <Route path="products" element={<ProductsPage />} />
+                <Route path="products" element={<CatalogPage />} />
                 <Route path="products/:productId" element={<ProductPage />} />
                 <Route path="cart" element={<CartPage />} />
                 <Route path="*" element={<ErrorPage />} />
