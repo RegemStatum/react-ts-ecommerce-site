@@ -25,7 +25,7 @@ const reducer = (state: StateType, action: ActionType) => {
     return { ...state, productsToShow: newProductsToShow, curPage: newCurPage };
   }
   if (action.type === Actions.SET_CURRENT_PAGE) {
-    const newPageIndex = action.payload!.pageIndex;
+    const newPageIndex: number = action.payload!.pageIndex;
     const sliceFrom = state.productsPerPage * (newPageIndex - 1);
     const sliceTo = sliceFrom + state.productsPerPage;
 
@@ -38,8 +38,62 @@ const reducer = (state: StateType, action: ActionType) => {
     };
   }
   if (action.type === Actions.SET_IS_GRID_VIEW) {
-    const isGridView = action.payload!.isGridView;
+    const isGridView: boolean = action.payload!.isGridView;
     return { ...state, isGridView };
+  }
+  if (action.type === Actions.SET_SORT_OPTION) {
+    const sortOption: string = action.payload!.sortOption;
+    let newProducts = [...state.products];
+    let newProductsToShow = [...state.productsToShow];
+
+    if (sortOption === "price-low-high") {
+      console.log("price low high");
+      newProducts = newProducts.sort((a, b) => {
+        return a.fields.price - b.fields.price;
+      });
+      newProductsToShow = newProductsToShow.sort((a, b) => {
+        return a.fields.price - b.fields.price;
+      });
+    }
+    if (sortOption === "price-high-low") {
+      console.log("price high low");
+
+      newProducts = newProducts.sort((a, b) => {
+        return b.fields.price - a.fields.price;
+      });
+      newProductsToShow = newProductsToShow.sort((a, b) => {
+        return b.fields.price - a.fields.price;
+      });
+    }
+    if (sortOption === "name-a-z") {
+      console.log("price name a z");
+
+      newProducts = newProducts.sort((a, b) => {
+        return a.fields.name.localeCompare(b.fields.name);
+      });
+      newProductsToShow = newProductsToShow.sort((a, b) => {
+        return a.fields.name.localeCompare(b.fields.name);
+      });
+    }
+    if (sortOption === "name-z-a") {
+      console.log("price name z a");
+
+      newProducts = newProducts.sort((a, b) => {
+        return b.fields.name.localeCompare(a.fields.name);
+      });
+      newProductsToShow = newProductsToShow.sort((a, b) => {
+        return b.fields.name.localeCompare(a.fields.name);
+      });
+    }
+
+    console.log("newProducts: ", newProducts);
+    console.log("new products to show", newProductsToShow);
+    return {
+      ...state,
+      products: newProducts,
+      productsToShow: newProductsToShow,
+      sortBy: sortOption,
+    };
   }
   return { ...state };
 };

@@ -7,6 +7,7 @@ export enum catalogActions {
   SET_CURRENT_PAGE = "SET_CURRENT_PAGE",
   SET_IS_GRID_VIEW = "SET_IS_GRID_VIEW",
   LOAD_MORE_PRODUCTS = "LOAD_MORE_PRODUCTS",
+  SET_SORT_OPTION = "SET_SORT_OPTION",
 }
 
 export interface catalogActionType {
@@ -21,4 +22,5 @@ export interface catalogStateType {
   curPage: number;
   pagesAmount: number;
   isGridView: boolean;
+  sortBy: string;
 }

@@ -18,6 +18,7 @@ const initialState = {
   curPage: 1,
   pagesAmount: 0,
   isGridView: true,
+  sortBy: "price-low-high",
 };
 
 // provider default value
@@ -38,11 +39,22 @@ export const CatalogProvider: FC = ({ children }) => {
     state: { products: appProducts },
   } = useAppContext();
 
+  // set products
   useEffect(() => {
     if (!state.products.length) {
       dispatch({ type: catalogActions.SET_PRODUCTS, payload: { appProducts } });
     }
   }, [state.products.length, appProducts]);
+
+  // initial sort
+  useEffect(() => {
+    if (state.products.length) {
+      dispatch({
+        type: catalogActions.SET_SORT_OPTION,
+        payload: { sortOption: state.sortBy },
+      });
+    }
+  }, [state.products.length]);
 
   // context value
   const providerValue = { state, dispatch };
