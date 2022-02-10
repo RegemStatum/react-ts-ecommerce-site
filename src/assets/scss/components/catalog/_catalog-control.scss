@@ -1,0 +1,44 @@
+@use "../../abstracts/" as *;
+
+.catalog-control {
+  display: flex;
+  flex-wrap: wrap;
+
+  & > * {
+    padding: getPadding(600);
+    background-color: transparent;
+    border: 1px solid getColor("text-4-clr");
+  }
+
+  #{&}-sort-filter {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+  }
+
+  #{&}-sort-filter.sort {
+    label {
+      text-transform: uppercase;
+    }
+  }
+
+  #{&}-sort-filter.filter {
+    display: flex;
+    gap: getMargin(500);
+    text-transform: uppercase;
+
+    svg {
+      font-size: 1.4rem;
+      color: getColor("bg-clr");
+    }
+  }
+
+  #{&}-btn {
+    display: flex;
+    font-size: 1.5rem;
+    cursor: pointer;
+
+    &.highlighted {
+      color: getColor("bg-clr");
+    }
+  }
+}

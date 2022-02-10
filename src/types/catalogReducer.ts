@@ -3,7 +3,6 @@ export enum catalogActions {
   CLOSE_FILTER_MODAL = "CLOSE_FILTER_MODAL",
   SET_PRODUCTS = "SET_PRODUCTS",
   SET_PRODUCTS_TO_SHOW = "SET_PRODUCTS_TO_SHOW",
-  SET_PAGES_AMOUNT = "SET_PAGES_AMOUNT",
   SET_PRODUCTS_PER_PAGE = "SET_PRODUCTS_PER_PAGE",
   SET_CURRENT_PAGE = "SET_CURRENT_PAGE",
   SET_IS_GRID_VIEW = "SET_IS_GRID_VIEW",
@@ -21,4 +20,5 @@ export interface catalogStateType {
   productsPerPage: number;
   curPage: number;
   pagesAmount: number;
+  isGridView: boolean;
 }

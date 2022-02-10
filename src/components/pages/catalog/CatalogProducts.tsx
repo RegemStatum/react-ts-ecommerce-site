@@ -17,31 +17,38 @@ const CatalogProducts: FC = () => {
 
   return (
     <div className="catalog-products-container">
-      {productsToShow.map((product, index) => {
-        if (!product) return <></>;
-        const fields: ProductFields = product.fields;
-        const { name, price, discountedPrice, images, isDiscounted } = fields;
-        let image = "";
-        if (images) {
-          image = images[0].url;
-        } else {
-          image = adImg;
-        }
+      <div
+        className={`catalog-products ${
+          state.isGridView ? "grid-view" : "list-view"
+        }`}
+      >
+        {productsToShow.map((product, index) => {
+          if (!product) return <></>;
+          const fields: ProductFields = product.fields;
+          const { name, price, discountedPrice, images, isDiscounted } = fields;
+          let image = "";
+          if (images) {
+            image = images[0].url;
+          } else {
+            image = adImg;
+          }
 
-        let formattedDiscountedPrice = formatPrice(discountedPrice);
-        let formattedPrice = formatPrice(price);
-        return (
-          <Product
-            key={index}
-            name={name}
-            price={formattedPrice}
-            discountedPrice={formattedDiscountedPrice}
-            isDiscounted={isDiscounted}
-            image={image}
-            id={product.id}
-          />
-        );
-      })}
+          let formattedDiscountedPrice = formatPrice(discountedPrice);
+          let formattedPrice = formatPrice(price);
+          return (
+            <Product
+              key={index}
+              name={name}
+              price={formattedPrice}
+              discountedPrice={formattedDiscountedPrice}
+              isDiscounted={isDiscounted}
+              image={image}
+              id={product.id}
+            />
+          );
+        })}
+      </div>
+
       <button
         className={`btn-load-more ${
           state.products[state.products.length - 1]?.id ===

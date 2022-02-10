@@ -54,7 +54,7 @@ const reducer = (state: StateType, action: ActionType) => {
     const newTotalPrice = action.payload!.totalPrice;
     return { ...state, totalPrice: newTotalPrice };
   }
-  return state;
+  return { ...state };
 };
 
 export default reducer;

@@ -10,6 +10,8 @@
     font-family: "Montserrat", sans-serif;
     border: 1px solid getColor("text-4-clr");
     background-color: transparent;
+    margin-bottom: getMargin(800);
+    cursor: pointer;
 
     &.active {
       background-color: getColor("bg-clr");

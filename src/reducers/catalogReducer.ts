@@ -20,7 +20,9 @@ const reducer = (state: StateType, action: ActionType) => {
     const moreProducts = state.products.slice(sliceFrom, sliceTo);
     const newProductsToShow = [...state.productsToShow, ...moreProducts];
 
-    return { ...state, productsToShow: newProductsToShow };
+    const newCurPage = state.curPage + 1;
+
+    return { ...state, productsToShow: newProductsToShow, curPage: newCurPage };
   }
   if (action.type === Actions.SET_CURRENT_PAGE) {
     const newPageIndex = action.payload!.pageIndex;
@@ -34,6 +36,10 @@ const reducer = (state: StateType, action: ActionType) => {
       productsToShow: newProductsToShow,
       curPage: newPageIndex,
     };
+  }
+  if (action.type === Actions.SET_IS_GRID_VIEW) {
+    const isGridView = action.payload!.isGridView;
+    return { ...state, isGridView };
   }
   return { ...state };
 };

@@ -17,6 +17,7 @@ const initialState = {
   productsPerPage: 9,
   curPage: 1,
   pagesAmount: 0,
+  isGridView: true,
 };
 
 // provider default value
