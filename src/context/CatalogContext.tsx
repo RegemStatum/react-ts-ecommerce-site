@@ -20,7 +20,7 @@ const initialState = {
   isGridView: true,
   isFilterSidebarOpen: false,
   sortBy: "", //"price-low-high"
-  filtersArr: [],
+  filtersObj: {},
 };
 
 // provider default value

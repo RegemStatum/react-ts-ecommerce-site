@@ -17,7 +17,7 @@ const FilterCategories: FC = () => {
 
   // add categories to filtersArr
   useEffect(() => {
-    if (categoriesArr.length === 0 && state.products.length > 0) {
+    if (!categoriesArr.length && state.products.length > 0) {
       const newCategoriesArr: Category[] = [];
 
       state.products.forEach((product) => {
@@ -34,8 +34,8 @@ const FilterCategories: FC = () => {
 
       setCategoriesArr(newCategoriesArr);
       dispatch({
-        type: catalogActions.SET_FILTERS_ARR,
-        payload: { filtersArrItem: newCategoriesArr },
+        type: catalogActions.SET_FILTERS_OBJ,
+        payload: { filtersArrItem: newCategoriesArr, name: "category" },
       });
     }
   }, [state.products, categoriesArr.length, dispatch]);

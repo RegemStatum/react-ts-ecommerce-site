@@ -96,9 +96,12 @@ const reducer = (state: StateType, action: ActionType) => {
   if (action.type === Actions.CLOSE_FILTER_SIDEBAR) {
     return { ...state, isFilterSidebarOpen: false };
   }
-  if (action.type === Actions.SET_FILTERS_ARR) {
-    const newFiltersArr = [...state.filtersArr, action.payload!.filtersArrItem];
-    return { ...state, filtersArr: newFiltersArr };
+  if (action.type === Actions.SET_FILTERS_OBJ) {
+    const filterName = action.payload!.name as string;
+    const filterArr = action.payload!.filtersArrItem;
+
+    const newFiltersObj = { ...state.filtersObj, [filterName]: filterArr };
+    return { ...state, filtersObj: newFiltersObj };
   }
   if (action.type === Actions.FILTER_PRODUCTS_TO_SHOW) {
     const name = action.payload!.name;
