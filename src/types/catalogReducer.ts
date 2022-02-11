@@ -8,6 +8,8 @@ export enum catalogActions {
   SET_IS_GRID_VIEW = "SET_IS_GRID_VIEW",
   LOAD_MORE_PRODUCTS = "LOAD_MORE_PRODUCTS",
   SET_SORT_OPTION = "SET_SORT_OPTION",
+  SET_FILTERS_ARR = "SET_FILTERS_ARR",
+  FILTER_PRODUCTS_TO_SHOW = "FILTER_PRODUCTS_TO_SHOW",
 }
 
 export interface catalogActionType {
@@ -24,5 +26,5 @@ export interface catalogStateType {
   isGridView: boolean;
   isFilterSidebarOpen: boolean;
   sortBy: string;
-  filtersArr: Array<{ [key: string]: any }>;
+  filtersArr: Array<Array<{ [key: string]: any }>>;
 }

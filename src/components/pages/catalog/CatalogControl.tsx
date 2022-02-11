@@ -1,12 +1,16 @@
 import React, { FC } from "react";
 import { BiRefresh } from "react-icons/bi";
 import { BsGrid3X3GapFill, BsListUl } from "react-icons/bs";
+import { useAppContext } from "../../../context/AppContext";
 import { useCatalogContext } from "../../../context/CatalogContext";
 import { catalogActions } from "../../../types/catalogReducer";
 import Sort from "./Sort";
 
 const CatalogControl: FC = () => {
   const { state, dispatch } = useCatalogContext();
+  const {
+    state: { products: appProducts },
+  } = useAppContext();
 
   const setListView = () => {
     dispatch({
@@ -26,15 +30,21 @@ const CatalogControl: FC = () => {
     dispatch({ type: catalogActions.OPEN_FILTER_SIDEBAR });
   };
 
+  const refreshProducts = () => [
+    dispatch({ type: catalogActions.SET_PRODUCTS, payload: { appProducts } }),
+  ];
+
   return (
     <div className="catalog-control">
-      <button
-        className="catalog-control-sort-filter filter"
-        onClick={openFilterSidebar}
-      >
-        Filter
-        <BiRefresh />
-      </button>
+      <div className="catalog-control-sort-filter filter">
+        <button onClick={openFilterSidebar}>Filter</button>
+        <button
+          className="catalog-control-sort-filter filter-refresh"
+          onClick={refreshProducts}
+        >
+          <BiRefresh />
+        </button>
+      </div>
       <Sort />
       <button
         className={`catalog-control-btn ${

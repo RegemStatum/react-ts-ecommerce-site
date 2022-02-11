@@ -43,8 +43,9 @@ export const CatalogProvider: FC = ({ children }) => {
 
   // set products
   useEffect(() => {
-    if (!state.products.length) {
+    if (state.products.length === 0) {
       dispatch({ type: catalogActions.SET_PRODUCTS, payload: { appProducts } });
+      console.log(appProducts);
     }
   }, [state.products.length, appProducts]);
 
