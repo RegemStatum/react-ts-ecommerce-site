@@ -4,6 +4,19 @@ import {
   catalogActions as Actions,
 } from "../types/catalogReducer";
 
+function sortByPrice(a: any, b: any) {
+  let pricetoCompareA = a.fields.price;
+  let pricetoCompareB = b.fields.price;
+
+  if (a.fields.isDiscounted) {
+    pricetoCompareA = a.fields.discountedPrice;
+  }
+  if (b.fields.isDiscounted) {
+    pricetoCompareB = b.fields.discountedPrice;
+  }
+  return pricetoCompareA - pricetoCompareB;
+}
+
 const reducer = (state: StateType, action: ActionType) => {
   if (action.type === Actions.SET_PRODUCTS) {
     const newProducts = action.payload!.appProducts;
@@ -48,22 +61,13 @@ const reducer = (state: StateType, action: ActionType) => {
 
     if (sortOption === "price-low-high") {
       console.log("price low high");
-      newProducts = newProducts.sort((a, b) => {
-        return a.fields.price - b.fields.price;
-      });
-      newProductsToShow = newProductsToShow.sort((a, b) => {
-        return a.fields.price - b.fields.price;
-      });
+      newProducts = newProducts.sort((a, b) => sortByPrice(a, b));
+      newProductsToShow = newProductsToShow.sort((a, b) => sortByPrice(a, b));
     }
     if (sortOption === "price-high-low") {
       console.log("price high low");
-
-      newProducts = newProducts.sort((a, b) => {
-        return b.fields.price - a.fields.price;
-      });
-      newProductsToShow = newProductsToShow.sort((a, b) => {
-        return b.fields.price - a.fields.price;
-      });
+      newProducts = newProducts.sort((a, b) => sortByPrice(b, a));
+      newProductsToShow = newProductsToShow.sort((a, b) => sortByPrice(b, a));
     }
     if (sortOption === "name-a-z") {
       console.log("price name a z");

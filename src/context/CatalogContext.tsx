@@ -18,7 +18,7 @@ const initialState = {
   curPage: 1,
   pagesAmount: 0,
   isGridView: true,
-  sortBy: "price-low-high",
+  sortBy: "", //"price-low-high"
 };
 
 // provider default value
@@ -48,13 +48,21 @@ export const CatalogProvider: FC = ({ children }) => {
 
   // initial sort
   useEffect(() => {
-    if (state.products.length) {
+    if (state.products.length && state.sortBy === "") {
       dispatch({
         type: catalogActions.SET_SORT_OPTION,
-        payload: { sortOption: state.sortBy },
+        payload: { sortOption: "price-low-high" },
       });
     }
-  }, [state.products.length]);
+  }, [state.products.length, state.sortBy]);
+
+  // return to the very first page after changing sort method
+  useEffect(() => {
+    dispatch({
+      type: catalogActions.SET_CURRENT_PAGE,
+      payload: { pageIndex: 1 },
+    });
+  }, [state.sortBy]);
 
   // context value
   const providerValue = { state, dispatch };

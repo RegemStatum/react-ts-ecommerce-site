@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useCatalogContext } from "../../../context/CatalogContext";
 import ProductFields from "../../../types/CatalogProductFields";
 import adImg from "../../../assets/images/index/webp/ad-img.webp";
@@ -14,6 +14,14 @@ const CatalogProducts: FC = () => {
   const loadMoreProducts = () => {
     dispatch({ type: catalogActions.LOAD_MORE_PRODUCTS });
   };
+
+  const [isShowLoadMoreBtn, setIsShowLoadMoreBtn] = useState(true);
+  useEffect(() => {
+    setIsShowLoadMoreBtn(true);
+    if (state.curPage === state.pagesAmount) {
+      setIsShowLoadMoreBtn(false);
+    }
+  }, [state.pagesAmount, state.curPage]);
 
   return (
     <div className="catalog-products-container">
@@ -50,12 +58,7 @@ const CatalogProducts: FC = () => {
       </div>
 
       <button
-        className={`btn-load-more ${
-          state.products[state.products.length - 1]?.id ===
-          state.productsToShow[state.productsToShow.length - 1]?.id
-            ? "hide"
-            : "show"
-        }`}
+        className={`btn-load-more ${!isShowLoadMoreBtn ? "hide" : "show"}`}
         onClick={loadMoreProducts}
       >
         <BiRefresh />
