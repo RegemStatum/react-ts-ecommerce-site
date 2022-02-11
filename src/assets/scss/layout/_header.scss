@@ -1,21 +1,23 @@
 @use "../abstracts" as *;
 
 body.home-page .header {
+  position: relative;
   background-color: transparent;
 }
 
 .header {
   background-color: getColor("bg-clr");
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 
 .header .container {
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: getPadding(600) 0;
   font-family: "Montserrat", sans-serif;
-  z-index: 2;
 
   @include md {
     padding: getPadding(800) 0;

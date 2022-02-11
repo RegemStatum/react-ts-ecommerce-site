@@ -2,7 +2,11 @@ import React, { FC, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import CompaniesSlider from "../components/CompaniesSlider";
 import PageHero from "../components/PageHero";
-import { CatalogProducts, Pagination } from "../components/pages/catalog";
+import {
+  CatalogProducts,
+  FilterSidebar,
+  Pagination,
+} from "../components/pages/catalog";
 import CatalogControl from "../components/pages/catalog/CatalogControl";
 import { useCatalogContext } from "../context/CatalogContext";
 
@@ -22,6 +26,7 @@ const ProductsPage: FC = () => {
 
   return (
     <div className="products-page">
+      <FilterSidebar />
       <PageHero path={useLocation().pathname} />
       <div className="container-2">
         <CatalogControl />

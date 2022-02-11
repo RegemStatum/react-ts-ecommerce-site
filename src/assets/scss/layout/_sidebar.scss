@@ -44,7 +44,7 @@
       right: 0;
       font-size: 2.2rem;
       color: getColor("clr-red");
-      background-color: getColor("clr-black");
+      background-color: transparent;
       cursor: pointer;
       @include radius;
     }

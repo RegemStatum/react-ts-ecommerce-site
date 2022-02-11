@@ -1,6 +1,6 @@
 export enum catalogActions {
-  OPEN_FILTER_MODAL = "OPEN_FILTER_MODAL",
-  CLOSE_FILTER_MODAL = "CLOSE_FILTER_MODAL",
+  OPEN_FILTER_SIDEBAR = "OPEN_FILTER_SIDEBAR",
+  CLOSE_FILTER_SIDEBAR = "CLOSE_FILTER_SIDEBAR",
   SET_PRODUCTS = "SET_PRODUCTS",
   SET_PRODUCTS_TO_SHOW = "SET_PRODUCTS_TO_SHOW",
   SET_PRODUCTS_PER_PAGE = "SET_PRODUCTS_PER_PAGE",
@@ -22,5 +22,7 @@ export interface catalogStateType {
   curPage: number;
   pagesAmount: number;
   isGridView: boolean;
+  isFilterSidebarOpen: boolean;
   sortBy: string;
+  filtersArr: Array<{ [key: string]: any }>;
 }

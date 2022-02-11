@@ -18,7 +18,9 @@ const initialState = {
   curPage: 1,
   pagesAmount: 0,
   isGridView: true,
+  isFilterSidebarOpen: false,
   sortBy: "", //"price-low-high"
+  filtersArr: [],
 };
 
 // provider default value

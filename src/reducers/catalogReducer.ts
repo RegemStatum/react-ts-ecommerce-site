@@ -60,18 +60,14 @@ const reducer = (state: StateType, action: ActionType) => {
     let newProductsToShow = [...state.productsToShow];
 
     if (sortOption === "price-low-high") {
-      console.log("price low high");
       newProducts = newProducts.sort((a, b) => sortByPrice(a, b));
       newProductsToShow = newProductsToShow.sort((a, b) => sortByPrice(a, b));
     }
     if (sortOption === "price-high-low") {
-      console.log("price high low");
       newProducts = newProducts.sort((a, b) => sortByPrice(b, a));
       newProductsToShow = newProductsToShow.sort((a, b) => sortByPrice(b, a));
     }
     if (sortOption === "name-a-z") {
-      console.log("price name a z");
-
       newProducts = newProducts.sort((a, b) => {
         return a.fields.name.localeCompare(b.fields.name);
       });
@@ -80,8 +76,6 @@ const reducer = (state: StateType, action: ActionType) => {
       });
     }
     if (sortOption === "name-z-a") {
-      console.log("price name z a");
-
       newProducts = newProducts.sort((a, b) => {
         return b.fields.name.localeCompare(a.fields.name);
       });
@@ -89,15 +83,18 @@ const reducer = (state: StateType, action: ActionType) => {
         return b.fields.name.localeCompare(a.fields.name);
       });
     }
-
-    console.log("newProducts: ", newProducts);
-    console.log("new products to show", newProductsToShow);
     return {
       ...state,
       products: newProducts,
       productsToShow: newProductsToShow,
       sortBy: sortOption,
     };
+  }
+  if (action.type === Actions.OPEN_FILTER_SIDEBAR) {
+    return { ...state, isFilterSidebarOpen: true };
+  }
+  if (action.type === Actions.CLOSE_FILTER_SIDEBAR) {
+    return { ...state, isFilterSidebarOpen: false };
   }
   return { ...state };
 };

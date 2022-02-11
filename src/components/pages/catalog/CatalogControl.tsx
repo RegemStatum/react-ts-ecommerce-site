@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { BiListUl, BiRefresh } from "react-icons/bi";
+import { BiRefresh } from "react-icons/bi";
 import { BsGrid3X3GapFill, BsListUl } from "react-icons/bs";
 import { useCatalogContext } from "../../../context/CatalogContext";
 import { catalogActions } from "../../../types/catalogReducer";
@@ -22,9 +22,16 @@ const CatalogControl: FC = () => {
     });
   };
 
+  const openFilterSidebar = () => {
+    dispatch({ type: catalogActions.OPEN_FILTER_SIDEBAR });
+  };
+
   return (
     <div className="catalog-control">
-      <button className="catalog-control-sort-filter filter">
+      <button
+        className="catalog-control-sort-filter filter"
+        onClick={openFilterSidebar}
+      >
         Filter
         <BiRefresh />
       </button>
