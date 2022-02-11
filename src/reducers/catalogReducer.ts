@@ -22,7 +22,13 @@ const reducer = (state: StateType, action: ActionType) => {
     const newProducts = action.payload!.appProducts;
     const productsToShow = newProducts.slice(0, state.productsPerPage);
     const pagesAmount = Math.ceil(newProducts.length / state.productsPerPage);
-    return { ...state, products: newProducts, productsToShow, pagesAmount };
+    return {
+      ...state,
+      products: newProducts,
+      productsToShow,
+      pagesAmount,
+      chosenFiltersObj: {},
+    };
   }
   if (action.type === Actions.LOAD_MORE_PRODUCTS) {
     const lastProductToShow =
@@ -107,15 +113,37 @@ const reducer = (state: StateType, action: ActionType) => {
     const name = action.payload!.name;
     let newProducts = [...state.products];
     let newProductsToShow = [...state.productsToShow];
+    let newChosenFiltersObj = { ...state.chosenFiltersObj };
 
     if (name === "category") {
       newProducts = action.payload!.allProducts;
       const newCategory = action.payload!.category;
+      newChosenFiltersObj.category = [newCategory];
+
       console.log("new category has been chosen", newCategory);
       newProducts = newProducts.filter((item) => {
         const product = item.fields;
         return product.category === newCategory;
       });
+      newProductsToShow = newProducts.slice(0, state.productsPerPage);
+    }
+
+    if (name === "color") {
+      const newColor = action.payload!.color;
+      if (action.payload!.setColor) {
+        console.log("new color has been chosen", newColor);
+        newProducts = newProducts.filter((item) => {
+          const product = item.fields;
+          return product.colors.includes(newColor);
+        });
+        if (!newChosenFiltersObj.colors) {
+          newChosenFiltersObj.colors = [];
+        }
+        newChosenFiltersObj.colors.push(newColor);
+      } else {
+        console.log("new color should be removed from filters", newColor);
+      }
+
       newProductsToShow = newProducts.slice(0, state.productsPerPage);
     }
 
@@ -126,6 +154,7 @@ const reducer = (state: StateType, action: ActionType) => {
       products: newProducts,
       productsToShow: newProductsToShow,
       pagesAmount,
+      chosenFiltersObj: newChosenFiltersObj,
     };
   }
   return { ...state };

@@ -9,6 +9,7 @@ export enum catalogActions {
   LOAD_MORE_PRODUCTS = "LOAD_MORE_PRODUCTS",
   SET_SORT_OPTION = "SET_SORT_OPTION",
   SET_FILTERS_OBJ = "SET_FILTERS_OBJ",
+  SET_CHOSEN_FILTERS_OBJ = "SET_CHOSEN_FILTERS_OBJ",
   FILTER_PRODUCTS_TO_SHOW = "FILTER_PRODUCTS_TO_SHOW",
 }
 
@@ -27,7 +28,12 @@ export interface catalogStateType {
   isFilterSidebarOpen: boolean;
   sortBy: string;
   filtersObj: {
-    string?: Array<{
+    [key: string]: Array<{
+      [key: string]: any;
+    }>;
+  };
+  chosenFiltersObj: {
+    [key: string]: Array<{
       [key: string]: any;
     }>;
   };

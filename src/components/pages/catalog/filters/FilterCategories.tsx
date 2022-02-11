@@ -14,13 +14,14 @@ const FilterCategories: FC = () => {
   } = useAppContext();
   const { state, dispatch } = useCatalogContext();
   const [categoriesArr, setCategoriesArr] = useState<Array<Category>>([]);
+  const [curCategory, setCurCategory] = useState("");
 
   // add categories to filtersArr
   useEffect(() => {
     if (!categoriesArr.length && state.products.length > 0) {
       const newCategoriesArr: Category[] = [];
 
-      state.products.forEach((product) => {
+      allProducts.forEach((product) => {
         const category = product.fields.category;
         const categoryIndex = newCategoriesArr.findIndex(
           (item) => item.category === category
@@ -38,10 +39,11 @@ const FilterCategories: FC = () => {
         payload: { filtersArrItem: newCategoriesArr, name: "category" },
       });
     }
-  }, [state.products, categoriesArr.length, dispatch]);
+  }, [state.products, categoriesArr.length, dispatch, allProducts]);
 
   // on category click
   const handleCategoryClick = (category: string) => {
+    setCurCategory(category);
     dispatch({
       type: catalogActions.FILTER_PRODUCTS_TO_SHOW,
       payload: { name: "category", allProducts, category },
@@ -58,7 +60,9 @@ const FilterCategories: FC = () => {
         return (
           <div
             key={index}
-            className="category"
+            className={`category ${
+              curCategory === item.category ? "highlight" : ""
+            }`}
             onClick={() => handleCategoryClick(item.category)}
           >
             <p>{item.category}</p>

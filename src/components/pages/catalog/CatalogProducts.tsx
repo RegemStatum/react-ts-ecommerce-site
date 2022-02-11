@@ -23,6 +23,15 @@ const CatalogProducts: FC = () => {
     }
   }, [state.pagesAmount, state.curPage]);
 
+  if (!state.products.length) {
+    return (
+      <div className="catalog-products-container">
+        <p>No products found...</p>
+        <p>Please refresh filters, if you have set ones</p>
+      </div>
+    );
+  }
+
   return (
     <div className="catalog-products-container">
       <div

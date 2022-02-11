@@ -21,6 +21,7 @@ const FilterElContainer: FC<FilterElContainerProps> = ({ children, name }) => {
   useEffect(() => {
     if (state.isFilterSidebarOpen) {
       setIsHide(false);
+      setIsOpen(true);
     }
   }, [state.isFilterSidebarOpen]);
 

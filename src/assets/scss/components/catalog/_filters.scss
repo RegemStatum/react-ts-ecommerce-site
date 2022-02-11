@@ -1,0 +1,150 @@
+@use "../../abstracts/" as *;
+
+.filters-container {
+  padding: 8px 0;
+
+  .filter-el-container {
+    padding: getPadding(800) getPadding();
+    width: 85%;
+    max-width: 300px;
+
+    &.hide {
+      display: none;
+    }
+
+    .control {
+      display: flex;
+      align-items: center;
+
+      span {
+        min-width: max-content;
+        font-family: "Montserrat", sans-serif;
+        color: getColor("text-1-clr");
+        text-transform: uppercase;
+        font-weight: 600;
+        padding-left: getPadding(300);
+        padding-right: getPadding(500);
+        @include text(400);
+      }
+
+      .btn-control {
+        padding: 0;
+        background-color: transparent;
+        display: flex;
+        font-size: 1.1rem;
+
+        &.arrow {
+          font-size: 1rem;
+          transition: all 0.3s;
+
+          &.open {
+            transform: rotate(0);
+          }
+
+          &.close {
+            transform: rotate(-180deg);
+          }
+        }
+
+        &:last-child {
+          color: getColor("text-4-clr");
+          margin-left: auto;
+        }
+      }
+    }
+
+    .children-container {
+      overflow: hidden;
+      max-height: 300px;
+      transition: max-height 0.3s;
+
+      &.close {
+        max-height: 0;
+      }
+
+      &.open {
+        max-height: 300px;
+      }
+    }
+
+    &.categories {
+      .children-container .categories {
+        .category.highlight {
+          color: getColor("bg-clr");
+        }
+      }
+    }
+
+    &.color {
+      .children-container .colors {
+        display: flex;
+        gap: getMargin(300);
+        margin-bottom: getMargin(700);
+
+        & > p {
+          padding-bottom: getPadding(200);
+        }
+
+        & > * {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          cursor: pointer;
+        }
+
+        .red {
+          background-color: getColor("clr-red");
+
+          &.chosen-clr {
+            box-shadow: 0 0 2px 2px getColor("clr-red");
+            border: 1px solid getColor("clr-red");
+          }
+        }
+        .blue {
+          background-color: getColor("clr-blue");
+
+          &.chosen-clr {
+            box-shadow: 0 0 2px 2px getColor("clr-blue");
+            border: 1px solid getColor("clr-blue");
+          }
+        }
+        .black {
+          background-color: getColor("clr-black");
+
+          &.chosen-clr {
+            box-shadow: 0 0 2px 2px getColor("clr-black");
+            border: 1px solid getColor("clr-black");
+          }
+        }
+        .yellow {
+          background-color: getColor("clr-yellow");
+
+          &.chosen-clr {
+            box-shadow: 0 0 2px 2px getColor("clr-yellow");
+            border: 1px solid getColor("clr-yellow");
+          }
+        }
+        .green {
+          background-color: getColor("clr-green");
+
+          &.chosen-clr {
+            box-shadow: 0 0 2px 2px getColor("clr-green");
+            border: 1px solid getColor("clr-green");
+          }
+        }
+
+        .chosen-clr {
+          background-color: getColor("text-3-clr");
+        }
+
+        .chosen {
+          color: getColor("text-1-clr");
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}

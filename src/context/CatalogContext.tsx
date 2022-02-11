@@ -21,6 +21,7 @@ const initialState = {
   isFilterSidebarOpen: false,
   sortBy: "", //"price-low-high"
   filtersObj: {},
+  chosenFiltersObj: {},
 };
 
 // provider default value
@@ -43,7 +44,7 @@ export const CatalogProvider: FC = ({ children }) => {
 
   // set products
   useEffect(() => {
-    if (state.products.length === 0) {
+    if (!state.products.length && !Object.keys(state.chosenFiltersObj).length) {
       dispatch({ type: catalogActions.SET_PRODUCTS, payload: { appProducts } });
       console.log(appProducts);
     }
