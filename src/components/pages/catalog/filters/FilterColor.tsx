@@ -10,9 +10,9 @@ const FilterColor: FC = () => {
   } = useAppContext();
   const { state, dispatch } = useCatalogContext();
   const [colorsArr, setColorsArr] = useState<string[]>([]);
-  const [chosenColorsArr, setChosenColorsArr] = useState<string[]>([]);
+  const [chosenColors, setChosenColors] = useState<string[]>([]);
 
-  // add colors to filtersArr
+  // add colors to filtersObj
   useEffect(() => {
     if (!colorsArr.length && state.products.length > 0) {
       let newColorsArr: string[] = [];
@@ -31,22 +31,21 @@ const FilterColor: FC = () => {
 
   // on color click
   const handleColorClick = (color: string) => {
-    if (!chosenColorsArr.includes(color)) {
-      setChosenColorsArr([...chosenColorsArr, color]);
-      dispatch({
-        type: catalogActions.FILTER_PRODUCTS_TO_SHOW,
-        payload: { name: "color", color, setColor: true },
-      });
-    } else {
-      const newChosenColorsArr = chosenColorsArr.filter(
-        (colorItem) => colorItem !== color
-      );
-      setChosenColorsArr(newChosenColorsArr);
-      dispatch({
-        type: catalogActions.FILTER_PRODUCTS_TO_SHOW,
-        payload: { name: "color", color, setColor: false },
-      });
+    let newChosenColors: string[] = [];
+    // add color to filter
+    if (!state.chosenFiltersObj.colors?.includes(color)) {
+      newChosenColors = [...chosenColors, color];
     }
+    // remove color from filter
+    else {
+      newChosenColors = chosenColors.filter((colorItem) => colorItem !== color);
+    }
+    setChosenColors(newChosenColors);
+    console.log("chosen colors: ", newChosenColors);
+    dispatch({
+      type: catalogActions.FILTER_PRODUCTS,
+      payload: { property: "colors", value: newChosenColors, allProducts },
+    });
   };
 
   return (
@@ -55,7 +54,7 @@ const FilterColor: FC = () => {
         return (
           <div
             className={`color ${color} ${
-              chosenColorsArr.includes(color) ? "chosen-clr" : ""
+              state.chosenFiltersObj.colors?.includes(color) ? "chosen-clr" : ""
             }`}
             key={index}
             onClick={() => handleColorClick(color)}

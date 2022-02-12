@@ -14,7 +14,6 @@ const FilterCategories: FC = () => {
   } = useAppContext();
   const { state, dispatch } = useCatalogContext();
   const [categoriesArr, setCategoriesArr] = useState<Array<Category>>([]);
-  const [curCategory, setCurCategory] = useState("");
 
   // add categories to filtersArr
   useEffect(() => {
@@ -43,10 +42,9 @@ const FilterCategories: FC = () => {
 
   // on category click
   const handleCategoryClick = (category: string) => {
-    setCurCategory(category);
     dispatch({
-      type: catalogActions.FILTER_PRODUCTS_TO_SHOW,
-      payload: { name: "category", allProducts, category },
+      type: catalogActions.FILTER_PRODUCTS,
+      payload: { property: "category", value: category, allProducts },
     });
   };
 
@@ -61,7 +59,9 @@ const FilterCategories: FC = () => {
           <div
             key={index}
             className={`category ${
-              curCategory === item.category ? "highlight" : ""
+              state.chosenFiltersObj.category?.includes(item.category)
+                ? "highlight"
+                : ""
             }`}
             onClick={() => handleCategoryClick(item.category)}
           >

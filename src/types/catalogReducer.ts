@@ -10,13 +10,20 @@ export enum catalogActions {
   SET_SORT_OPTION = "SET_SORT_OPTION",
   SET_FILTERS_OBJ = "SET_FILTERS_OBJ",
   SET_CHOSEN_FILTERS_OBJ = "SET_CHOSEN_FILTERS_OBJ",
-  FILTER_PRODUCTS_TO_SHOW = "FILTER_PRODUCTS_TO_SHOW",
+  FILTER_PRODUCTS = "FILTER_PRODUCTS",
 }
 
 export interface catalogActionType {
   type: catalogActions;
   payload?: { [key: string]: any };
 }
+
+export type FiltersObjPropValue = Array<
+  | {
+      [key: string]: any;
+    }
+  | string
+>;
 
 export interface catalogStateType {
   products: Array<{ [key: string]: any }>;
@@ -28,13 +35,9 @@ export interface catalogStateType {
   isFilterSidebarOpen: boolean;
   sortBy: string;
   filtersObj: {
-    [key: string]: Array<{
-      [key: string]: any;
-    }>;
+    [key: string]: FiltersObjPropValue;
   };
   chosenFiltersObj: {
-    [key: string]: Array<{
-      [key: string]: any;
-    }>;
+    [key: string]: FiltersObjPropValue;
   };
 }

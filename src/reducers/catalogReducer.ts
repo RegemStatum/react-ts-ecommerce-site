@@ -2,6 +2,7 @@ import {
   catalogActionType as ActionType,
   catalogStateType as StateType,
   catalogActions as Actions,
+  FiltersObjPropValue,
 } from "../types/catalogReducer";
 
 function sortByPrice(a: any, b: any) {
@@ -15,6 +16,54 @@ function sortByPrice(a: any, b: any) {
     pricetoCompareB = b.fields.discountedPrice;
   }
   return pricetoCompareA - pricetoCompareB;
+}
+
+function getProductsByChosenFilters(
+  allProducts: Array<{ [key: string]: any }>,
+  chosenFiltersObj: {
+    [key: string]: FiltersObjPropValue;
+  }
+) {
+  let newProducts = [...allProducts];
+  const chosenFiltersKeys = Object.keys(chosenFiltersObj);
+
+  console.log("new products: ", newProducts);
+  console.log("chosen filters keys: ", chosenFiltersKeys);
+
+  try {
+    chosenFiltersKeys.forEach((filterKey) => {
+      console.log("FILTER KEY: ", filterKey);
+      newProducts = newProducts.filter((product) => {
+        console.log("current product: ", product);
+        let ans: boolean;
+        if (!product.fields.hasOwnProperty(filterKey)) {
+          throw new Error(
+            `no such property: "${filterKey}" on product: "${product.id}"`
+          );
+        }
+        const productFieldsProperty = product.fields[filterKey];
+        const filtersKeysProperty = chosenFiltersObj[filterKey];
+        console.log("new productFieldsProperty: ", productFieldsProperty);
+        console.log("chosen filtersKeysProperty: ", filtersKeysProperty);
+        if (Array.isArray(filtersKeysProperty)) {
+          ans = true;
+          for (let item of filtersKeysProperty) {
+            if (!productFieldsProperty.includes(item)) {
+              ans = false;
+              break;
+            }
+          }
+        } else {
+          ans = productFieldsProperty.includes(filtersKeysProperty);
+        }
+        console.log("product has needed values: ", ans);
+        return ans;
+      });
+    });
+  } catch (e) {
+    console.log(e);
+  }
+  return newProducts;
 }
 
 const reducer = (state: StateType, action: ActionType) => {
@@ -109,45 +158,30 @@ const reducer = (state: StateType, action: ActionType) => {
     const newFiltersObj = { ...state.filtersObj, [filterName]: filterArr };
     return { ...state, filtersObj: newFiltersObj };
   }
-  if (action.type === Actions.FILTER_PRODUCTS_TO_SHOW) {
-    const name = action.payload!.name;
-    let newProducts = [...state.products];
-    let newProductsToShow = [...state.productsToShow];
-    let newChosenFiltersObj = { ...state.chosenFiltersObj };
+  if (action.type === Actions.FILTER_PRODUCTS) {
+    // action payload new filtersObj property and value
+    const property = action.payload!.property;
+    const value = action.payload!.value;
 
-    if (name === "category") {
-      newProducts = action.payload!.allProducts;
-      const newCategory = action.payload!.category;
-      newChosenFiltersObj.category = [newCategory];
+    // all products
+    const allProducts = action.payload!.allProducts;
+    // chosen filters
+    let newChosenFiltersObj = JSON.parse(
+      JSON.stringify(state.chosenFiltersObj)
+    );
+    newChosenFiltersObj[property] = value;
 
-      console.log("new category has been chosen", newCategory);
-      newProducts = newProducts.filter((item) => {
-        const product = item.fields;
-        return product.category === newCategory;
-      });
-      newProductsToShow = newProducts.slice(0, state.productsPerPage);
-    }
+    const newProducts = getProductsByChosenFilters(
+      allProducts,
+      newChosenFiltersObj
+    );
 
-    if (name === "color") {
-      const newColor = action.payload!.color;
-      if (action.payload!.setColor) {
-        console.log("new color has been chosen", newColor);
-        newProducts = newProducts.filter((item) => {
-          const product = item.fields;
-          return product.colors.includes(newColor);
-        });
-        if (!newChosenFiltersObj.colors) {
-          newChosenFiltersObj.colors = [];
-        }
-        newChosenFiltersObj.colors.push(newColor);
-      } else {
-        console.log("new color should be removed from filters", newColor);
-      }
-
-      newProductsToShow = newProducts.slice(0, state.productsPerPage);
-    }
-
+    // set new products to show
+    const newProductsToShow = newProducts.slice(0, state.productsPerPage);
+    // set new pages amount
     const pagesAmount = Math.ceil(newProducts.length / state.productsPerPage);
+
+    console.log("new products", newProducts);
 
     return {
       ...state,
