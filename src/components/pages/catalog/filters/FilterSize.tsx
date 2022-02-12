@@ -8,8 +8,11 @@ const FilterSize: FC = () => {
     state: { products: allProducts },
   } = useAppContext();
   const { state, dispatch } = useCatalogContext();
+  const initialChosenSizes = state.chosenFiltersObj?.sizes as string[];
   const [sizesArr, setSizesArr] = useState<string[]>([]);
-  const [chosenSizes, setChosenSizes] = useState<string[]>([]);
+  const [chosenSizes, setChosenSizes] = useState<string[]>(
+    initialChosenSizes || []
+  );
 
   // add colors to filtersObj
   useEffect(() => {

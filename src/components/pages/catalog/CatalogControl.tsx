@@ -30,9 +30,9 @@ const CatalogControl: FC = () => {
     dispatch({ type: catalogActions.OPEN_FILTER_SIDEBAR });
   };
 
-  const refreshProducts = () => [
-    dispatch({ type: catalogActions.SET_PRODUCTS, payload: { appProducts } }),
-  ];
+  const refreshProducts = () => {
+    dispatch({ type: catalogActions.SET_PRODUCTS, payload: { appProducts } });
+  };
 
   return (
     <div className="catalog-control">

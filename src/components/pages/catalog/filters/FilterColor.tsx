@@ -9,8 +9,11 @@ const FilterColor: FC = () => {
     state: { products: allProducts },
   } = useAppContext();
   const { state, dispatch } = useCatalogContext();
+  const initialChosenColors = state.chosenFiltersObj?.colors as string[];
   const [colorsArr, setColorsArr] = useState<string[]>([]);
-  const [chosenColors, setChosenColors] = useState<string[]>([]);
+  const [chosenColors, setChosenColors] = useState<string[]>(
+    initialChosenColors || []
+  );
 
   // add colors to filtersObj
   useEffect(() => {
@@ -41,7 +44,6 @@ const FilterColor: FC = () => {
       newChosenColors = chosenColors.filter((colorItem) => colorItem !== color);
     }
     setChosenColors(newChosenColors);
-    console.log("chosen colors: ", newChosenColors);
     dispatch({
       type: catalogActions.FILTER_PRODUCTS,
       payload: { property: "colors", value: newChosenColors, allProducts },

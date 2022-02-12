@@ -31,7 +31,6 @@ const FilterCategories: FC = () => {
           newCategoriesArr[categoryIndex].amount += 1;
         }
       });
-
       setCategoriesArr(newCategoriesArr);
       dispatch({
         type: catalogActions.SET_FILTERS_OBJ,

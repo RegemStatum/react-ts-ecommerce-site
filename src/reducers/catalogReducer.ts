@@ -18,6 +18,33 @@ function sortByPrice(a: any, b: any) {
   return pricetoCompareA - pricetoCompareB;
 }
 
+function sortProducts(
+  sortOption: string,
+  productsPerPage: number,
+  newProducts: Array<{ [key: string]: any }>,
+  newProductsToShow: Array<{ [key: string]: any }>
+) {
+  if (sortOption === "price-low-high") {
+    newProducts = newProducts.sort((a, b) => sortByPrice(a, b));
+    // newProductsToShow = newProductsToShow.sort((a, b) => sortByPrice(a, b));
+  }
+  if (sortOption === "price-high-low") {
+    newProducts = newProducts.sort((a, b) => sortByPrice(b, a));
+  }
+  if (sortOption === "name-a-z") {
+    newProducts = newProducts.sort((a, b) => {
+      return a.fields.name.localeCompare(b.fields.name);
+    });
+  }
+  if (sortOption === "name-z-a") {
+    newProducts = newProducts.sort((a, b) => {
+      return b.fields.name.localeCompare(a.fields.name);
+    });
+  }
+  newProductsToShow = newProducts.slice(0, productsPerPage);
+  return [newProducts, newProductsToShow];
+}
+
 function getProductsByChosenFilters(
   allProducts: Array<{ [key: string]: any }>,
   chosenFiltersObj: {
@@ -27,38 +54,33 @@ function getProductsByChosenFilters(
   let newProducts = [...allProducts];
   const chosenFiltersKeys = Object.keys(chosenFiltersObj);
 
-  console.log("new products: ", newProducts);
-  console.log("chosen filters keys: ", chosenFiltersKeys);
-
   try {
     chosenFiltersKeys.forEach((filterKey) => {
-      console.log("FILTER KEY: ", filterKey);
-      newProducts = newProducts.filter((product) => {
-        console.log("current product: ", product);
-        let ans: boolean;
-        if (!product.fields.hasOwnProperty(filterKey)) {
-          throw new Error(
-            `no such property: "${filterKey}" on product: "${product.id}"`
-          );
-        }
-        const productFieldsProperty = product.fields[filterKey];
-        const filtersKeysProperty = chosenFiltersObj[filterKey];
-        console.log("new productFieldsProperty: ", productFieldsProperty);
-        console.log("chosen filtersKeysProperty: ", filtersKeysProperty);
-        if (Array.isArray(filtersKeysProperty)) {
-          ans = true;
-          for (let item of filtersKeysProperty) {
-            if (!productFieldsProperty.includes(item)) {
-              ans = false;
-              break;
-            }
+      if (filterKey !== "price") {
+        newProducts = newProducts.filter((product) => {
+          let ans: boolean;
+          if (!product.fields.hasOwnProperty(filterKey)) {
+            throw new Error(
+              `no such property: "${filterKey}" on product: "${product.id}"`
+            );
           }
-        } else {
-          ans = productFieldsProperty.includes(filtersKeysProperty);
-        }
-        console.log("product has needed values: ", ans);
-        return ans;
-      });
+          const productFieldsProperty = product.fields[filterKey];
+          const filtersKeysProperty = chosenFiltersObj[filterKey];
+
+          if (Array.isArray(filtersKeysProperty)) {
+            ans = true;
+            for (let item of filtersKeysProperty) {
+              if (!productFieldsProperty.includes(item)) {
+                ans = false;
+                break;
+              }
+            }
+          } else {
+            ans = productFieldsProperty.includes(filtersKeysProperty);
+          }
+          return ans;
+        });
+      }
     });
   } catch (e) {
     console.log(e);
@@ -76,6 +98,7 @@ const reducer = (state: StateType, action: ActionType) => {
       products: newProducts,
       productsToShow,
       pagesAmount,
+      sortBy: "price-low-high",
       chosenFiltersObj: {},
     };
   }
@@ -114,35 +137,19 @@ const reducer = (state: StateType, action: ActionType) => {
     let newProducts = [...state.products];
     let newProductsToShow = [...state.productsToShow];
 
-    if (sortOption === "price-low-high") {
-      newProducts = newProducts.sort((a, b) => sortByPrice(a, b));
-      newProductsToShow = newProductsToShow.sort((a, b) => sortByPrice(a, b));
-    }
-    if (sortOption === "price-high-low") {
-      newProducts = newProducts.sort((a, b) => sortByPrice(b, a));
-      newProductsToShow = newProductsToShow.sort((a, b) => sortByPrice(b, a));
-    }
-    if (sortOption === "name-a-z") {
-      newProducts = newProducts.sort((a, b) => {
-        return a.fields.name.localeCompare(b.fields.name);
-      });
-      newProductsToShow = newProductsToShow.sort((a, b) => {
-        return a.fields.name.localeCompare(b.fields.name);
-      });
-    }
-    if (sortOption === "name-z-a") {
-      newProducts = newProducts.sort((a, b) => {
-        return b.fields.name.localeCompare(a.fields.name);
-      });
-      newProductsToShow = newProductsToShow.sort((a, b) => {
-        return b.fields.name.localeCompare(a.fields.name);
-      });
-    }
+    [newProducts, newProductsToShow] = sortProducts(
+      sortOption,
+      state.productsPerPage,
+      newProducts,
+      newProductsToShow
+    );
+
     return {
       ...state,
       products: newProducts,
       productsToShow: newProductsToShow,
       sortBy: sortOption,
+      curPage: 1,
     };
   }
   if (action.type === Actions.OPEN_FILTER_SIDEBAR) {
@@ -170,7 +177,7 @@ const reducer = (state: StateType, action: ActionType) => {
       JSON.stringify(state.chosenFiltersObj)
     );
 
-    // we seek inside already filtered products if filtersObj already has property with array value and new property value is longer than previous, else we filter all products
+    // we seek inside already filtered products if filtersObj already has property with array value and new property array value is longer than previous, else we filter all products
     if (
       newChosenFiltersObj.hasOwnProperty(property) &&
       Array.isArray(newChosenFiltersObj[property]) &&
@@ -180,17 +187,36 @@ const reducer = (state: StateType, action: ActionType) => {
     }
     newChosenFiltersObj[property] = value;
 
-    const newProducts = getProductsByChosenFilters(
+    let newProducts = getProductsByChosenFilters(
       allProducts,
       newChosenFiltersObj
     );
 
+    if (state.chosenFiltersObj.price) {
+      newProducts = newProducts.filter((product) => {
+        let price: number;
+        if (!product.fields.isDiscounted) {
+          price = product.fields.price;
+        } else {
+          price = product.fields.discountedPrice;
+        }
+        return price <= value;
+      });
+    }
+
     // set new products to show
-    const newProductsToShow = newProducts.slice(0, state.productsPerPage);
+    let newProductsToShow = newProducts.slice(0, state.productsPerPage);
     // set new pages amount
     const pagesAmount = Math.ceil(newProducts.length / state.productsPerPage);
 
-    console.log("new products", newProducts);
+    [newProducts, newProductsToShow] = sortProducts(
+      state.sortBy,
+      state.productsPerPage,
+      newProducts,
+      newProductsToShow
+    );
+
+    console.log("new products: ", newProducts);
 
     return {
       ...state,
@@ -198,6 +224,7 @@ const reducer = (state: StateType, action: ActionType) => {
       productsToShow: newProductsToShow,
       pagesAmount,
       chosenFiltersObj: newChosenFiltersObj,
+      curPage: 1,
     };
   }
   return { ...state };
