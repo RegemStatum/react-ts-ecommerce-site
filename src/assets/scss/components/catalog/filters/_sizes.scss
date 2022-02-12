@@ -1,0 +1,35 @@
+@use "../../../abstracts/" as *;
+
+.filters-container .filter-el-container.size .children-container .sizes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: getMargin(700) 0;
+  align-items: center;
+  border-collapse: collapse;
+
+  @include md {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .size {
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    width: 25px;
+    height: 20px;
+    margin: 0 auto;
+    box-sizing: content-box;
+    border-collapse: collapse;
+    text-align: center;
+    padding: getPadding(800) getPadding(800);
+    border: 1px solid getColor("text-4-clr");
+
+    p {
+      @include text(300);
+    }
+
+    &.chosen {
+      box-shadow: 0 0 5px getColor("text-4-clr");
+    }
+  }
+}

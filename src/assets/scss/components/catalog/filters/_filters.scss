@@ -1,0 +1,75 @@
+@use "../../../abstracts/" as *;
+
+.filters-container {
+  .filter-el-container {
+    padding: getPadding(800) getPadding();
+    margin: 0 auto;
+    border: 1px solid getColor("text-4-clr");
+    border-right: none;
+    border-bottom: none;
+
+    &.hide {
+      display: none;
+    }
+
+    .control {
+      display: flex;
+      align-items: center;
+      padding-top: getPadding(600);
+
+      span {
+        min-width: max-content;
+        font-family: "Montserrat", sans-serif;
+        color: getColor("text-1-clr");
+        text-transform: uppercase;
+        font-weight: 600;
+        padding-left: getPadding(300);
+        padding-right: getPadding(500);
+        @include text(400);
+      }
+
+      .btn-control {
+        padding: 0;
+        background-color: transparent;
+        display: flex;
+        font-size: 1.1rem;
+        cursor: pointer;
+
+        &.arrow {
+          font-size: 1rem;
+          transition: all 0.3s;
+
+          &.open {
+            transform: rotate(0);
+          }
+
+          &.close {
+            transform: rotate(-180deg);
+          }
+        }
+
+        &:last-child {
+          color: getColor("text-4-clr");
+          margin-left: auto;
+        }
+      }
+    }
+
+    .children-container {
+      overflow: hidden;
+      max-height: 300px;
+      transition: all 0.3s;
+      padding: getPadding(1000) getPadding(300) 0 getPadding(300);
+
+      &.close {
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+
+      &.open {
+        max-height: 300px;
+      }
+    }
+  }
+}

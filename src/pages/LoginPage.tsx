@@ -9,10 +9,6 @@ const LoginPage: FC = () => {
   const path = useLocation().pathname;
   const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
   const isUser = user && isAuthenticated;
-  // return to login page after log out
-  // const returnTo = `${window.location.origin}${window.location.pathname}`;
-
-  // console.log(`${window.location.origin}${window.location.pathname}`);
 
   return (
     <section className="login-page page-min-height">

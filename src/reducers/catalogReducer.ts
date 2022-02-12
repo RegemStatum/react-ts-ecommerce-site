@@ -164,11 +164,20 @@ const reducer = (state: StateType, action: ActionType) => {
     const value = action.payload!.value;
 
     // all products
-    const allProducts = action.payload!.allProducts;
+    let allProducts = action.payload!.allProducts;
     // chosen filters
     let newChosenFiltersObj = JSON.parse(
       JSON.stringify(state.chosenFiltersObj)
     );
+
+    // we seek inside already filtered products if filtersObj already has property with array value and new property value is longer than previous, else we filter all products
+    if (
+      newChosenFiltersObj.hasOwnProperty(property) &&
+      Array.isArray(newChosenFiltersObj[property]) &&
+      newChosenFiltersObj[property].length < value.length
+    ) {
+      allProducts = state.products;
+    }
     newChosenFiltersObj[property] = value;
 
     const newProducts = getProductsByChosenFilters(

@@ -1,0 +1,22 @@
+@use "../../../abstracts/" as *;
+
+.filters-container
+  .filter-el-container.categories
+  .children-container
+  .categories {
+  display: flex;
+  flex-direction: column;
+  gap: getMargin(200);
+
+  .category {
+    font-family: "Montserrat", sans-serif;
+    text-transform: capitalize;
+    display: flex;
+    justify-content: space-between;
+    gap: getMargin();
+  }
+
+  .highlight {
+    color: getColor("bg-clr");
+  }
+}

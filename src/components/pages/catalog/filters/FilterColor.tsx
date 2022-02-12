@@ -59,7 +59,9 @@ const FilterColor: FC = () => {
             key={index}
             onClick={() => handleColorClick(color)}
           >
-            <BsCheck2 className="chosen" />
+            {state.chosenFiltersObj.colors?.includes(color) && (
+              <BsCheck2 className="chosen" />
+            )}
           </div>
         );
       })}

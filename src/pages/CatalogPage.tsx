@@ -25,7 +25,7 @@ const ProductsPage: FC = () => {
   }, [state.curPage, state.productsToShow, state.productsPerPage]);
 
   return (
-    <div className="products-page">
+    <div className="products-page page-min-height">
       <FilterSidebar />
       <PageHero path={useLocation().pathname} />
       <div className="container-2">
