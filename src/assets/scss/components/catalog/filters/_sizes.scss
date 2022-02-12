@@ -29,7 +29,7 @@
     }
 
     &.chosen {
-      box-shadow: 0 0 5px getColor("text-4-clr");
+      box-shadow: 0 0 1px 1px getColor("text-4-clr");
     }
   }
 }
