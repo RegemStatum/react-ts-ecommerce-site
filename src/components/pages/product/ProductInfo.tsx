@@ -49,6 +49,7 @@ const ProductInfo: FC<ProductInfoProps> = ({
     size: "",
     amount: 1,
     maxAmount: product.maxAmount,
+    category: "",
     id: productId,
   });
 
@@ -63,6 +64,7 @@ const ProductInfo: FC<ProductInfoProps> = ({
       size: "",
       amount: 1,
       maxAmount: product.maxAmount,
+      category: product.category,
       id: productId,
     });
   }, [product, productId]);
@@ -124,7 +126,7 @@ const ProductInfo: FC<ProductInfoProps> = ({
   return (
     <div className="product-page-product container-2">
       <div className="info">
-        <p>Lifestyle</p>
+        <p>{product.category}</p>
         <h3 className="name">{product.name}</h3>
         <div className="reviews-stars">{stars.map((star) => star)}</div>
         <div className="color-size">

@@ -10,6 +10,7 @@ interface ProductPageFields {
   images: Array<{ id: string; url: string }>;
   specification: string;
   description: string;
+  category: string;
   id: string;
 }
 

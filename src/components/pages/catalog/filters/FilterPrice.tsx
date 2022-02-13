@@ -19,7 +19,7 @@ const FilterPrice: FC = () => {
 
   // set min-max prices
   useEffect(() => {
-    if (allProducts.length > 0 && !price) {
+    if (allProducts.length > 0) {
       let newMinPrice = 0;
       let newMaxPrice = 0;
       allProducts.forEach((product) => {

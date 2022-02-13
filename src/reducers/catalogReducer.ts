@@ -76,7 +76,12 @@ function getProductsByChosenFilters(
               }
             }
           } else {
-            ans = productFieldsProperty.includes(filtersKeysProperty);
+            if (typeof filtersKeysProperty === "boolean") {
+              ans =
+                productFieldsProperty === filtersKeysProperty ? true : false;
+            } else {
+              ans = productFieldsProperty.includes(filtersKeysProperty);
+            }
           }
           return ans;
         });

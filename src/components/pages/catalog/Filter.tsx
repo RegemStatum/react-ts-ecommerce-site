@@ -3,6 +3,7 @@ import FilterElContainer from "./FilterElContainer";
 import {
   FilterCategories,
   FilterColor,
+  FilterIsDiscounted,
   FilterPrice,
   FilterSize,
 } from "./filters";
@@ -15,6 +16,9 @@ const Filter: FC = () => {
       </FilterElContainer>
       <FilterElContainer name="price range">
         <FilterPrice />
+      </FilterElContainer>
+      <FilterElContainer name="sale">
+        <FilterIsDiscounted />
       </FilterElContainer>
       <FilterElContainer name="color">
         <FilterColor />

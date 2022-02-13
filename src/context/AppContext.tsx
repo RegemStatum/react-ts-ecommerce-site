@@ -28,6 +28,7 @@ const initialState: StateType = {
     images: [],
     specification: "",
     description: "",
+    category: "",
     id: "",
   },
 };

@@ -1,6 +1,7 @@
 @use "../../../abstracts/" as *;
 
 .filters-container {
+  // overflow-y: scroll;
   .filter-el-container {
     padding: getPadding(800) getPadding();
     margin: 0 auto;

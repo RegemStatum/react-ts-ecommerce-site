@@ -8,6 +8,12 @@ import {
 const reducer = (state: StateType, action: ActionType) => {
   if (action.type === Actions.SET_DATABASE) {
     const { records } = action.payload!;
+    records.forEach((record: any) => {
+      if (!record.fields.isDiscounted) {
+        record.fields.isDiscounted = false;
+      }
+    });
+
     const popularProducts = records
       .filter((record: any) => {
         return record.fields.popular === true;
