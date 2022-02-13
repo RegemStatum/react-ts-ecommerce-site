@@ -192,16 +192,27 @@ const reducer = (state: StateType, action: ActionType) => {
       newChosenFiltersObj
     );
 
-    if (state.chosenFiltersObj.price) {
+    if (newChosenFiltersObj.price) {
+      console.log(
+        "filtering by price, products coming to filter: ",
+        newProducts
+      );
+      console.log("price filter down to: ", newChosenFiltersObj.price);
       newProducts = newProducts.filter((product) => {
         let price: number;
-        if (!product.fields.isDiscounted) {
+        if (typeof product.fields.isDiscounted === "undefined") {
           price = product.fields.price;
         } else {
           price = product.fields.discountedPrice;
         }
-        return price <= value;
+        let ans = price <= Number(newChosenFiltersObj.price);
+        console.log(`item with price ${price}, return: ${ans}`);
+        return ans;
       });
+      console.log(
+        "filtering by price, products outcoming from filter: ",
+        newProducts
+      );
     }
 
     // set new products to show
