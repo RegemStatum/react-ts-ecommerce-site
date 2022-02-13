@@ -9,11 +9,9 @@ const FilterColor: FC = () => {
     state: { products: allProducts },
   } = useAppContext();
   const { state, dispatch } = useCatalogContext();
-  const initialChosenColors = state.chosenFiltersObj?.colors as string[];
+  // const initialChosenColors = state.chosenFiltersObj?.colors as string[];
   const [colorsArr, setColorsArr] = useState<string[]>([]);
-  const [chosenColors, setChosenColors] = useState<string[]>(
-    initialChosenColors || []
-  );
+  const [chosenColors, setChosenColors] = useState<string[]>([]);
 
   // add colors to filtersObj
   useEffect(() => {

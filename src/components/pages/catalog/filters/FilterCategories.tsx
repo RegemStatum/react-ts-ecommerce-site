@@ -41,6 +41,9 @@ const FilterCategories: FC = () => {
 
   // on category click
   const handleCategoryClick = (category: string) => {
+    if (String(state.chosenFiltersObj.category) === category) {
+      category = "";
+    }
     dispatch({
       type: catalogActions.FILTER_PRODUCTS,
       payload: { property: "category", value: category, allProducts },

@@ -7,8 +7,11 @@ const FilterIsDiscounted: FC = () => {
   const {
     state: { products: allProducts },
   } = useAppContext();
-  const { dispatch } = useCatalogContext();
-  const [isDiscounted, setIsDiscounted] = useState<boolean>(false);
+  const { state, dispatch } = useCatalogContext();
+  const initialState = Boolean(state.chosenFiltersObj?.isDiscounted);
+  const [isDiscounted, setIsDiscounted] = useState<boolean>(
+    initialState || false
+  );
 
   const handleChange = () => {
     const newIsDiscounted = !isDiscounted;

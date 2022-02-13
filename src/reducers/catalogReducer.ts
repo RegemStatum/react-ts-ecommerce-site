@@ -26,7 +26,6 @@ function sortProducts(
 ) {
   if (sortOption === "price-low-high") {
     newProducts = newProducts.sort((a, b) => sortByPrice(a, b));
-    // newProductsToShow = newProductsToShow.sort((a, b) => sortByPrice(a, b));
   }
   if (sortOption === "price-high-low") {
     newProducts = newProducts.sort((a, b) => sortByPrice(b, a));
@@ -76,9 +75,13 @@ function getProductsByChosenFilters(
               }
             }
           } else {
-            if (typeof filtersKeysProperty === "boolean") {
-              ans =
-                productFieldsProperty === filtersKeysProperty ? true : false;
+            if (filterKey === "isDiscounted") {
+              if (filtersKeysProperty) {
+                ans =
+                  productFieldsProperty === filtersKeysProperty ? true : false;
+              } else {
+                ans = true;
+              }
             } else {
               ans = productFieldsProperty.includes(filtersKeysProperty);
             }
@@ -197,6 +200,7 @@ const reducer = (state: StateType, action: ActionType) => {
       newChosenFiltersObj
     );
 
+    // filter by price
     if (newChosenFiltersObj.price) {
       console.log(
         "filtering by price, products coming to filter: ",

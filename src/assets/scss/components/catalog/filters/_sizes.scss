@@ -23,13 +23,14 @@
     text-align: center;
     padding: getPadding(800) getPadding(800);
     border: 1px solid getColor("text-4-clr");
+    cursor: pointer;
 
     p {
       @include text(300);
     }
 
     &.chosen {
-      box-shadow: 0 0 1px 1px getColor("text-4-clr");
+      box-shadow: 0 0 2px 2px getColor("text-4-clr");
     }
   }
 }
