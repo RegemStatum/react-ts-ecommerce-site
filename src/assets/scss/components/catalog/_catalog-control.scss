@@ -2,12 +2,32 @@
 
 .catalog-control {
   display: flex;
+  gap: getMargin(600);
   flex-wrap: wrap;
+  margin-top: getMargin(1000);
+  margin-bottom: getMargin(1000);
 
   & > * {
     padding: getPadding(600);
     background-color: transparent;
     border: 1px solid getColor("text-4-clr");
+  }
+
+  .view-btns {
+    display: flex;
+    gap: getMargin(1200);
+    position: relative;
+
+    &:after {
+      position: absolute;
+      content: "";
+      width: 1px;
+      height: 100%;
+      background-color: getColor("text-4-clr");
+      top: 0;
+      left: 50%;
+      transform: translateX(50%);
+    }
   }
 
   #{&}-sort-filter {
@@ -19,12 +39,27 @@
     label {
       text-transform: uppercase;
     }
+
+    // .sort-select:focus-visible {
+    //   border: 1px solid grey;
+    //   box-shadow: none;
+    // }
   }
 
   #{&}-sort-filter.filter {
     display: flex;
+    align-items: center;
     gap: getMargin(500);
     text-transform: uppercase;
+
+    button {
+      padding: 0;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      background-color: transparent;
+      text-transform: uppercase;
+    }
 
     svg {
       font-size: 1.4rem;
@@ -34,8 +69,17 @@
 
   #{&}-btn {
     display: flex;
+    align-items: center;
     font-size: 1.5rem;
     cursor: pointer;
+    background-color: transparent;
+
+    &:last-child {
+      svg {
+        font-size: 1.3rem;
+        font-weight: 600;
+      }
+    }
 
     &.highlighted {
       color: getColor("bg-clr");

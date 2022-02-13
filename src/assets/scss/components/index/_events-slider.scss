@@ -21,8 +21,8 @@
 
     .info {
       text-align: center;
-      width: 100vw;
       max-width: 1550px;
+      width: 95vw;
 
       @include sm {
         width: 94vw;

@@ -113,7 +113,6 @@
     @include text(200);
 
     @include sm {
-      // top: 66%;
       @include text(300);
     }
   }

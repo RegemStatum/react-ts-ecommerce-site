@@ -77,17 +77,15 @@ const FilterPrice: FC = () => {
     <div className="price">
       <div className="show-price-container">
         <div className="show-price min-price">
-          min Price: {formatPrice(minPrice)}
+          <p>{formatPrice(minPrice)}</p>
         </div>
         <div className="show-price max-price">
-          limit price t0: {formatPrice(price)}
-        </div>
-        <div className="show-price max-price">
-          max Price: {formatPrice(maxPrice)}
+          <p>{formatPrice(maxPrice)}</p>
         </div>
       </div>
-      <form action="">
+      <form action="" className="price-input-form">
         <input
+          className="price-input"
           type="range"
           name="price"
           id="price"
@@ -96,6 +94,11 @@ const FilterPrice: FC = () => {
           min={minPrice}
           max={maxPrice}
         />
+        <div className="cur-price">
+          <p>
+            Max price: <span>{formatPrice(price)}</span>
+          </p>
+        </div>
       </form>
     </div>
   );

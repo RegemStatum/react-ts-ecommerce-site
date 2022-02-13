@@ -18,11 +18,16 @@ const Sort: FC = () => {
     <div className="catalog-control-sort-filter sort">
       <form>
         <label htmlFor="sort-select">Sort by: </label>
-        <select name="sort-select" value={state.sortBy} onChange={handleChange}>
-          <option value="price-low-high">Price $ - $$</option>
-          <option value="price-high-low">Price $$ - $</option>
-          <option value="name-a-z">Name A - Z</option>
-          <option value="name-z-a">Name Z - A</option>
+        <select
+          name="sort-select"
+          value={state.sortBy}
+          onChange={handleChange}
+          className="sort-select"
+        >
+          <option value="price-low-high">price $ - $$</option>
+          <option value="price-high-low">price $$ - $</option>
+          <option value="name-a-z">name (a-z)</option>
+          <option value="name-z-a">name (z-a)</option>
         </select>
       </form>
     </div>

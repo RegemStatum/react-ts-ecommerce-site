@@ -1,0 +1,36 @@
+@use "../../../abstracts/" as *;
+
+.price {
+  p {
+    font-family: "Montserrat", sans-serif;
+  }
+
+  .show-price-container {
+    display: flex;
+    justify-content: space-evenly;
+
+    .show-price {
+      padding: getPadding(300) getPadding(700);
+      border: 1px solid getColor("text-4-clr");
+      border-radius: 1.5rem;
+      width: max-content;
+    }
+  }
+
+  .price-input-form {
+    .price-input {
+      display: block;
+      margin: getMargin(600) auto;
+      cursor: pointer;
+    }
+
+    .cur-price {
+      width: max-content;
+      margin: 0 auto;
+
+      span {
+        font-weight: 600;
+      }
+    }
+  }
+}

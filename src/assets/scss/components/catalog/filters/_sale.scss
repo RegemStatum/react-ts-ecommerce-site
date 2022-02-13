@@ -1,0 +1,18 @@
+@use "../../../abstracts/" as *;
+
+.is-discounted {
+  form {
+    display: flex;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+
+    label {
+      margin-right: getMargin(300);
+      width: max-content;
+    }
+
+    input {
+      cursor: pointer;
+    }
+  }
+}

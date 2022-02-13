@@ -1,6 +1,7 @@
 import React, { FC } from "react";
+import { AiOutlineUnorderedList } from "react-icons/ai";
 import { BiRefresh } from "react-icons/bi";
-import { BsGrid3X3GapFill, BsListUl } from "react-icons/bs";
+import { BsGrid3X3GapFill } from "react-icons/bs";
 import { useAppContext } from "../../../context/AppContext";
 import { useCatalogContext } from "../../../context/CatalogContext";
 import { catalogActions } from "../../../types/catalogReducer";
@@ -46,22 +47,24 @@ const CatalogControl: FC = () => {
         </button>
       </div>
       <Sort />
-      <button
-        className={`catalog-control-btn ${
-          state.isGridView ? "highlighted" : ""
-        }`}
-        onClick={setGridView}
-      >
-        <BsGrid3X3GapFill />
-      </button>
-      <button
-        className={`catalog-control-btn ${
-          !state.isGridView ? "highlighted" : ""
-        }`}
-        onClick={setListView}
-      >
-        <BsListUl />
-      </button>
+      <div className="view-btns">
+        <button
+          className={`catalog-control-btn ${
+            state.isGridView ? "highlighted" : ""
+          }`}
+          onClick={setGridView}
+        >
+          <BsGrid3X3GapFill />
+        </button>
+        <button
+          className={`catalog-control-btn ${
+            !state.isGridView ? "highlighted" : ""
+          }`}
+          onClick={setListView}
+        >
+          <AiOutlineUnorderedList />
+        </button>
+      </div>
     </div>
   );
 };
