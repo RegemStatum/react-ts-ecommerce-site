@@ -24,12 +24,13 @@
       max-width: 1550px;
       width: 95vw;
 
-      @include sm {
-        width: 94vw;
-      }
-
-      @include md {
+      & > * {
         width: 95vw;
+        max-width: 1550px;
+
+        @include lg {
+          width: 94vw;
+        }
       }
 
       h4 {
