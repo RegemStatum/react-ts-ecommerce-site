@@ -1,6 +1,19 @@
 @use "../../abstracts/" as *;
 
 .catalog-products-container {
+  h4 {
+    color: getColor("text-1-clr");
+  }
+
+  .refresh {
+    font-family: "Montserrat", sans-serif;
+    margin-bottom: getMargin(1000);
+  }
+
+  @include lg {
+    min-height: 30vh;
+  }
+
   .catalog-products {
     &.grid-view {
       display: grid;

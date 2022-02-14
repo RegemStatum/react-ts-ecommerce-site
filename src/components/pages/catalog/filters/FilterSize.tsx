@@ -43,7 +43,6 @@ const FilterSize: FC = () => {
       newChosenSizes = chosenSizes.filter((sizeItem) => sizeItem !== size);
     }
     setChosenSizes(newChosenSizes);
-    console.log("chosen sizes: ", newChosenSizes);
     dispatch({
       type: catalogActions.FILTER_PRODUCTS,
       payload: { property: "sizes", value: newChosenSizes, allProducts },

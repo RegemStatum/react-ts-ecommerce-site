@@ -40,10 +40,9 @@
       text-transform: uppercase;
     }
 
-    // .sort-select:focus-visible {
-    //   border: 1px solid grey;
-    //   box-shadow: none;
-    // }
+    .sort-select:focus {
+      outline: none;
+    }
   }
 
   #{&}-sort-filter.filter {

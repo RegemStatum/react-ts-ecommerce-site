@@ -26,8 +26,8 @@ const CatalogProducts: FC = () => {
   if (!state.products.length) {
     return (
       <div className="catalog-products-container">
-        <p>No products found...</p>
-        <p>Please refresh filters, if you have set ones</p>
+        <h4>No products found...</h4>
+        <p className="refresh">Please refresh filters, if you have set ones</p>
       </div>
     );
   }
